@@ -1,6 +1,7 @@
 # VILLALBA-MATA-DAVID
 
-El objetivo del proyecto, es una aplicación, en la cual dispondremos de una serie de opciones para facilitar una compra en un supermercado.
+El objetivo del proyecto, es una aplicación sencilla que realizaremos con una tecnologia de la que no tenemos conociminetos.
+La principal idea del proyecto es un carrito de la compra.
 Principalmente se permitirá crear listas, agregar alimentos, eliminarlos ...
 
-La aplicación se realizara con Polymer (https://www.polymer-project.org/1.0/).
+La aplicación se realizara con Xamarin (https://www.xamarin.com/).
