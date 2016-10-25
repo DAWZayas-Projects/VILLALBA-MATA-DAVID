@@ -60,8 +60,8 @@ namespace ShoppingList
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f05000c
-			public const int BtnDelete = 2131034124;
+			// aapt resource value: 0x7f05000d
+			public const int BtnDelete = 2131034125;
 			
 			// aapt resource value: 0x7f050001
 			public const int NewList = 2131034113;
@@ -80,6 +80,9 @@ namespace ShoppingList
 			
 			// aapt resource value: 0x7f050000
 			public const int linearLayout1 = 2131034112;
+			
+			// aapt resource value: 0x7f05000c
+			public const int linearLayout2 = 2131034124;
 			
 			// aapt resource value: 0x7f050008
 			public const int linearLayoutBottom = 2131034120;
