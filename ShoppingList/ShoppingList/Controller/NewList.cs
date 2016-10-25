@@ -11,37 +11,92 @@ using Android.Views;
 using Android.Widget;
 using Java.Util;
 using System.Collections;
+using ShoppingList.Controller;
+
 
 namespace ShoppingList.Controller
 {
     [Activity(Label = "NewList")]
-    public class NewList : Activity
+    public class NewList : ListActivity
     {
-        
 
-        protected override void OnCreate(Bundle savedInstanceState)
+
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(savedInstanceState);
+            base.OnCreate(bundle);
             SetContentView(Resource.Layout.NewList);
 
-            EditText textToAdd = FindViewById<EditText>(Resource.Id.editText);
-            Button addToListButton = FindViewById<Button>(Resource.Id.add);
-            ListView mListView = FindViewById<ListView>(Resource.Id.listView1);
+            EditText edit = FindViewById<EditText>(Resource.Id.editText);
+            Button btnAdd = FindViewById<Button>(Resource.Id.add);
+            List<Foods> players = Foods.GetPlayers();
+            this.ListAdapter = new ButtonAdapter(this, players);
+        }
 
-            List<string> mItems = new List<string>();
+        private class ButtonAdapter : BaseAdapter<Foods>
+        {
+            private Activity activity;
+            private List<Foods> data;
 
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mItems);
+            public ButtonAdapter(Activity activity, List<Foods> data)
+            {
+                this.activity = activity;
+                this.data = data;
+            }
 
-            mListView.Adapter = adapter;
+            public override Foods this[int position]
+            {
+                get { return this.data[position]; }
+            }
 
-            addToListButton.Click += (sender, e) => {
-                if (textToAdd.Text.Length > 0)
+            public override int Count
+            {
+                get { return this.data.Count(); }
+            }
+
+            public override long GetItemId(int position)
+            {
+                return 0;
+            }
+
+            public override View GetView(int position, View convertView, ViewGroup parent)
+            {
+                View view = convertView;
+
+                if (view == null)
                 {
-                    adapter.Add(textToAdd.Text); //tendre aki que añadir la nueva vista.
+                    view = this.activity.LayoutInflater.Inflate(Resource.Layout.view_row, null);  
                 }
- 
 
-            };
+                Foods food = this.data[position];
+
+                string name = food.Name;
+
+
+                view.FindViewById<TextView>(Resource.Id.tvViewRow).Text = name;
+
+                Button btnDelete = view.FindViewById<Button>(Resource.Id.BtnDelete);
+                btnDelete.Tag = name;
+                btnDelete.SetOnClickListener(new ButtonClickListener(this.activity));
+
+                return view;
+            }
+
+            private class ButtonClickListener : Java.Lang.Object, View.IOnClickListener
+            {
+                private Activity activity;
+
+                public ButtonClickListener(Activity activity)
+                {
+                    this.activity = activity;
+                }
+
+                public void OnClick(View v)
+                {
+                    string name = (string)v.Tag;
+                    string text = string.Format("{0} Button Click.", name);
+                    Toast.MakeText(this.activity, text, ToastLength.Short).Show();
+                }
+            }
         }
     }
 }
