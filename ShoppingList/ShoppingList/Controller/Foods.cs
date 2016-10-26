@@ -19,7 +19,7 @@ namespace ShoppingList.Controller
         public string Name { get; set; }
      
 
-        public static List<Foods> GetPlayers()
+        public static List<Foods> GetFoods()
         {
             List<Foods> result = new List<Foods>();
 

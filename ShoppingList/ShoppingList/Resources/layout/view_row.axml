@@ -13,7 +13,8 @@
             android:text="this is a row"
             android:layout_width="273.5dp"
             android:layout_height="wrap_content"
-            android:id="@+id/tvViewRow" />
+            android:id="@+id/tvViewRow"
+            android:textColor="@android:color/background_dark" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

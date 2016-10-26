@@ -13,24 +13,34 @@ using Java.Util;
 using System.Collections;
 using ShoppingList.Controller;
 
-
 namespace ShoppingList.Controller
 {
     [Activity(Label = "NewList")]
     public class NewList : ListActivity
     {
 
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.NewList);
-
-            EditText edit = FindViewById<EditText>(Resource.Id.editText);
             Button btnAdd = FindViewById<Button>(Resource.Id.add);
-            List<Foods> players = Foods.GetPlayers();
-            this.ListAdapter = new ButtonAdapter(this, players);
+            List<Foods> foods = Foods.GetFoods();
+            this.ListAdapter = new ButtonAdapter(this, foods);
+
+
+//            btnAdd.Click += BtnAdd_Click;
         }
+
+        /*  private void BtnAdd_Click(object sender, EventArgs e)
+                {
+
+                    EditText edit = FindViewById<EditText>(Resource.Id.editText);
+                    Preferences.Preferences.setString(this, Preferences.Preferences.getIdList(), edit.Text);
+
+                }
+        */
+
+
 
         private class ButtonAdapter : BaseAdapter<Foods>
         {
@@ -64,7 +74,7 @@ namespace ShoppingList.Controller
 
                 if (view == null)
                 {
-                    view = this.activity.LayoutInflater.Inflate(Resource.Layout.view_row, null);  
+                    view = this.activity.LayoutInflater.Inflate(Resource.Layout.view_row, null);
                 }
 
                 Foods food = this.data[position];

@@ -52,6 +52,7 @@
     <Compile Include="Controller\NewList.cs" />
     <Compile Include="Controller\Foods.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Controller\Preferences.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
