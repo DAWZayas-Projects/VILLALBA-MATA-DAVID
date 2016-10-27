@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Foods1.cs" />
     <Compile Include="Controller\NewList.cs" />
     <Compile Include="Controller\Foods.cs" />
     <Compile Include="MainActivity.cs" />

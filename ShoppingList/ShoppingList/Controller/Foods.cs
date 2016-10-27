@@ -12,13 +12,14 @@ using Android.Widget;
 
 namespace ShoppingList.Controller
 {
-    class Foods
+ /*   class Foods
     {
         
 
-        public string Name { get; set; }
-     
-
+      public string Name { get; set; }
+        
+       
+        
         public static List<Foods> GetFoods()
         {
             List<Foods> result = new List<Foods>();
@@ -30,5 +31,5 @@ namespace ShoppingList.Controller
 
             return result;
         }
-    }
+    }*/
 }
