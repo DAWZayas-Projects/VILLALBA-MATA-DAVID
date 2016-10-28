@@ -16,16 +16,8 @@ namespace ShoppingList
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.Main);
-
-            Button button = FindViewById<Button>(Resource.Id.NewList);
-
- 
-            button.Click += delegate 
-            {
-                Intent newIntent = new Intent(this, typeof(NewList));
-                StartActivity(newIntent);
-            };
+            Intent newIntent = new Intent(this, typeof(Init));
+            StartActivity(newIntent);
         }
     }
 }

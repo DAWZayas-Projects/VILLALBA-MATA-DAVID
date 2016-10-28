@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\Foods1.cs" />
+    <Compile Include="Controller\Init.cs" />
     <Compile Include="Controller\NewList.cs" />
-    <Compile Include="Controller\Foods.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Controller\Preferences.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,7 +69,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml">
+    <AndroidResource Include="Resources\layout\Init.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

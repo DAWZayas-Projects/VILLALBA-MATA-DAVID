@@ -9,43 +9,96 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Java.Util;
 using System.Collections;
 using ShoppingList.Controller;
-
+using Android.Preferences;
 namespace ShoppingList.Controller
 {
     [Activity(Label = "NewList")]
     public class NewList : ListActivity
     {
-
+        //vars
+        String nameList;
         protected override void OnCreate(Bundle bundle)
         {
+
             base.OnCreate(bundle);
+
             SetContentView(Resource.Layout.NewList);
-            Button btnAdd = FindViewById<Button>(Resource.Id.add);
+            Button btnSave = FindViewById<Button>(Resource.Id.save);
+            //Preferences.setString(this, Preferences.getLists(), "");
 
-            // List<Foods> foods = Foods.GetFoods();
-            List<Foods> foods = new List<Foods>();
+            String listNames = Preferences.getString(this, Preferences.getLists());
+            
+            ArrayList lists = new ArrayList();
 
-            foods.Add(new Foods { Name = "Patatas" });
+            if(listNames!="")
+            {
+                lists.AddRange(listNames.Split('|'));
+            }
 
-       
-            this.ListAdapter = new ButtonAdapter(this, foods);
+            nameList = "list_" + (lists.Count + 1);
+
+            Preferences.setString(this, nameList, "");
+
+            lists.Add(nameList);
+
+            //Concatenar Array en un String 
+            //listNames = string.Join("|",lists);
+ 
+            foreach (var item in lists)
+            {               
+                listNames += (item) + "|";
+            }
+            listNames = listNames.TrimEnd('|');
+
+            Preferences.setString(this, Preferences.getLists(), listNames);
+
+            //List<Foods> foods = new List<Foods>();
+
+            //ToDo ASÍ AÑADIRIAMOS TODOS LOS ELEMNTOS A LA LISTA
+            //foods.Add(lists);
 
 
-            btnAdd.Click += delegate
+            //this.ListAdapter = new ButtonAdapter(this, foods);
+
+
+            btnSave.Click += delegate
             {
                 EditText edit = FindViewById<EditText>(Resource.Id.editText);
-                foods.Add(new Foods { Name = edit.Text });
+
+                //foods.Add(new Foods { Name = edit.Text });
+
+                String elements = Preferences.getString(this, Preferences.getLists());
+
+                ArrayList elementsList = new ArrayList();
+
+                elementsList.AddRange(elements.Split('|'));
+
+                String newElement = edit.Text;
+
+                elementsList.Add(newElement);
+                //lists.Add(nameList);
+
+                elements = string.Join("|", elementsList);
+
+                Preferences.setString(this, Preferences.getLists(), elements);
             };
            
         }
 
-      
+ /*        protected override void OnResume()
+        {
+            String elements =  Preferences.getString(this, nameList);
 
-     
-          private class ButtonAdapter : BaseAdapter<Foods>
+            ArrayList lists = new ArrayList();
+
+            lists.AddRange(elements.Split('|'));
+
+        }
+*/
+
+      /*  private class ButtonAdapter : BaseAdapter<Foods>
           {
               private Activity activity;
               private List<Foods> data;
@@ -109,6 +162,6 @@ namespace ShoppingList.Controller
                       Toast.MakeText(this.activity, text, ToastLength.Short).Show();
                   }
               }
-       }
+       }*/
     }
 }

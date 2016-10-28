@@ -15,17 +15,23 @@ using Java.IO;
 using Android.Provider;
 using System.IO;
 
-namespace ShoppingList.Preferences
+namespace ShoppingList
 {
     class Preferences
     {
 
         private static string id_list              = "ID_LIST";
         private static string first_time_execution = "FIRST_TIME_EXECUTION";
+        private static string lists = "LISTS";
 
         public static string getIdList()
         {
             return id_list;
+        }
+
+        public static string getLists()
+        {
+            return lists;
         }
 
         public static string getFirsTimeExcution()
