@@ -65,7 +65,10 @@
     <AndroidResource Include="Resources\layout\NewList.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\view_row.axml">
+    <AndroidResource Include="Resources\layout\View_row.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Simple_row.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

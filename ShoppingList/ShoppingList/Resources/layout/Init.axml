@@ -5,28 +5,61 @@
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
     android:id="@+id/linearLayout1">
-    <Button
-        android:id="@+id/NewList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="20dp"
-        android:background="@android:drawable/ic_input_add"
-        android:layout_marginRight="20dp" />
-    <ListView
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout2"
+        android:layout_weight="4"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:gravity="right">
+        <Button
+            android:id="@+id/NewList"
+            android:background="@android:drawable/ic_input_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="396.0dp"
-        android:id="@+id/idViewList"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp" />
-    <Button
-        android:text="Delete all elements"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout3"
+        android:layout_weight="1">
+        <ListView
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/idViewList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/deleteAllElements"
-        android:background="@android:color/holo_red_dark" />
+        android:id="@+id/linearLayout5">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout4"
+            android:layout_weight="1"
+            android:layout_gravity="bottom" />
+        <Button
+            android:text="Delete all elements"
+            android:id="@+id/deleteAllElements"
+            android:background="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
 </LinearLayout>

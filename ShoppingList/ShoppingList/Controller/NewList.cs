@@ -18,8 +18,9 @@ namespace ShoppingList.Controller
     public class NewList : ListActivity
     {
         //vars
-        String nameList;
         Button btnSave;
+        Button btnBack;
+        EditText newList;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -27,50 +28,26 @@ namespace ShoppingList.Controller
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.NewList);
 
-            FindViewById<Button>(Resource.Id.save);
+            btnSave = FindViewById<Button>  (Resource.Id.save);
+            newList = FindViewById<EditText>(Resource.Id.newList);
+            btnBack = FindViewById<Button>  (Resource.Id.back);
 
-          
+            btnSave.Click += btnSave_Click;
+            btnBack.Click += btnBack_Click;
 
-            //List<Foods> foods = new List<Foods>();
-
-            //ToDo ASÍ AÑADIRIAMOS TODOS LOS ELEMNTOS A LA LISTA
-            //foods.Add(lists);
-
-
-            //this.ListAdapter = new ButtonAdapter(this, foods);
-
-
-            btnSave.Click += delegate
-            {
-                EditText edit = FindViewById<EditText>(Resource.Id.editText);
-
-
-                String elements = Preferences.getString(this, Preferences.getLists());
-
-                ArrayList elementsList = new ArrayList();
-
-                elementsList.AddRange(elements.Split('|'));
-
-                String newElement = edit.Text;
-
-                elementsList.Add(newElement);
-                //lists.Add(nameList);
-
-                elements = string.Join("|", elementsList);
-
-                Preferences.setString(this, Preferences.getLists(), elements);
-            };
-           
         }
 
-
-
-
-
-
-
-        public void addNewList()
+        private void btnBack_Click(object sender, EventArgs e)
         {
+            Finish();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            //vars 
+            Boolean bl;
+            String conversion;        
+  
             //Accedo a las listas
             String listNames = Preferences.getString(this, Preferences.getLists());
             ArrayList lists = new ArrayList();
@@ -79,107 +56,55 @@ namespace ShoppingList.Controller
             {
                 lists.AddRange(listNames.Split('|'));
             }
+            
+            //Compruebo si existe el nombre
+            bl = ExistList(lists, newList.Text);
 
-            nameList = "list_" + (lists.Count + 1);
+            //Si no existe el nombre (False) los guardamos.
+            if(bl == false)
+            {                
+                lists.Add(newList.Text);
+            } else {
+                Toast.MakeText(this, "already exist name "+newList.Text, ToastLength.Long).Show();
+                newList.Text = "";
+                newList.RequestFocus();
+            }
 
-            Preferences.setString(this, nameList, "");
+            conversion = ConversionToString(lists);
 
-            lists.Add(nameList);
+            Preferences.setString(this, Preferences.getLists(), conversion);
 
-            //Concatenar Array en un String 
-            //listNames = string.Join("|",lists);
+            Finish();
+        }
 
-            foreach (var item in lists)
+        public String ConversionToString(ArrayList arrayList)
+        {
+            String listNames="";
+            foreach (var item in arrayList)
             {
                 listNames += (item) + "|";
+
             }
+
             listNames = listNames.TrimEnd('|');
 
-            Preferences.setString(this, Preferences.getLists(), listNames);
+            return listNames;
         }
 
-
-
-
-
-
-
-
- /*        protected override void OnResume()
+        public Boolean ExistList(ArrayList array, String name)
         {
-            String elements =  Preferences.getString(this, nameList);
+            int exist;
 
-            ArrayList lists = new ArrayList();
+            exist = array.IndexOf(name);
 
-            lists.AddRange(elements.Split('|'));
-
-        }
-*/
-
-      /*  private class ButtonAdapter : BaseAdapter<Foods>
-          {
-              private Activity activity;
-              private List<Foods> data;
-
-              public ButtonAdapter(Activity activity, List<Foods> data)
-              {
-                  this.activity = activity;
-                  this.data = data;
-              }
-
-              public override Foods this[int position]
-              {
-                  get { return this.data[position]; }
-              }
-
-              public override int Count
-              {
-                  get { return this.data.Count(); }
-              }
-
-              public override long GetItemId(int position)
-              {
-                  return 0;
-              }
-              
-              public override View GetView(int position, View convertView, ViewGroup parent)
-              {
-                  View view = convertView;
-
-                  if (view == null)
-                  {
-                      view = this.activity.LayoutInflater.Inflate(Resource.Layout.view_row, null);
-                  }
-
-                  Foods food = this.data[position] ;
-
-                  string name = food.Name;
-                
-                    view.FindViewById<TextView>(Resource.Id.tvViewRow).Text = name;
-                    Button btnDelete = view.FindViewById<Button>(Resource.Id.BtnDelete);
-                    btnDelete.Tag = name;
-                    btnDelete.SetOnClickListener(new ButtonClickListener(this.activity));
-                
-
-                  return view;
-              }
-
-              private class ButtonClickListener : Java.Lang.Object, View.IOnClickListener
-              {
-                  private Activity activity;
-
-                  public ButtonClickListener(Activity activity)
-                  {
-                      this.activity = activity;
-                  }
-
-                  public void OnClick(View v)
-                  {
-                      string name = (string)v.Tag;
-                      string text = string.Format("{0} Button Click.", name);
-                      Toast.MakeText(this.activity, text, ToastLength.Short).Show();
-                  }
-              }
-       }*/
+            if (exist >= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }     
     }
 }

@@ -35,10 +35,21 @@ namespace ShoppingList.Adapters
 
             if (convertView == null)
             {
-                convertView = _context.LayoutInflater.Inflate(Resource.Layout.view_row, null);
+               if(item.NameItem != "")
+                {
+                    convertView = _context.LayoutInflater.Inflate(Resource.Layout.View_row, null);
+                    convertView.FindViewById<TextView>(Resource.Id.tvViewRow).Text = item.NameItem;
+                }
+                else
+                {
+                    convertView = _context.LayoutInflater.Inflate(Resource.Layout.Simple_row, null);
+                    convertView.FindViewById<TextView>(Resource.Id.NameSimpleRow).Text = item.NameItem;
+                }
             }
+               
+            
 
-            convertView.FindViewById<TextView>(Resource.Id.tvViewRow).Text =  item.NameItem;
+            
 
             return convertView;
         }

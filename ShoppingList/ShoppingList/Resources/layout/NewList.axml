@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/linearLayoutTop">
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/newList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -37,8 +37,7 @@
         <TextView
             android:id="@+id/android:empty"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No items" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"

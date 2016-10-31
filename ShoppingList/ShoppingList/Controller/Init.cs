@@ -32,11 +32,10 @@ namespace ShoppingList.Controller
 
             btnNewList = FindViewById<Button>(Resource.Id.NewList);
             btnDeleteAllElelements = FindViewById<Button>(Resource.Id.deleteAllElements);
+            myListView = FindViewById<ListView>(Resource.Id.idViewList);
 
             btnNewList.Click += btnNewList_Click;
             btnDeleteAllElelements.Click += btnDeleteAllElelements_Click;
-
-            viewList();
         }
   
 
@@ -60,12 +59,9 @@ namespace ShoppingList.Controller
                 listItems.Add(new Item { NameItem = str});
 
             }
-
-            if (listItems[0].NameItem != "")
-            {
-                myListView = FindViewById<ListView>(Resource.Id.idViewList);
-                myListView.Adapter = new ItemListAdapter(this, listItems);
-            }
+     
+             myListView.Adapter = new ItemListAdapter(this, listItems);
+            
         }
 
         private void btnNewList_Click(object sender, EventArgs e)
@@ -77,6 +73,7 @@ namespace ShoppingList.Controller
         private void btnDeleteAllElelements_Click(object sender, EventArgs e)
         {
             Preferences.setString(this, Preferences.getLists(), "");
+            OnResume();
         }
     }
 }
