@@ -19,40 +19,17 @@ namespace ShoppingList.Controller
     {
         //vars
         String nameList;
+        Button btnSave;
+
         protected override void OnCreate(Bundle bundle)
         {
 
             base.OnCreate(bundle);
-
             SetContentView(Resource.Layout.NewList);
-            Button btnSave = FindViewById<Button>(Resource.Id.save);
-            //Preferences.setString(this, Preferences.getLists(), "");
 
-            String listNames = Preferences.getString(this, Preferences.getLists());
-            
-            ArrayList lists = new ArrayList();
+            FindViewById<Button>(Resource.Id.save);
 
-            if(listNames!="")
-            {
-                lists.AddRange(listNames.Split('|'));
-            }
-
-            nameList = "list_" + (lists.Count + 1);
-
-            Preferences.setString(this, nameList, "");
-
-            lists.Add(nameList);
-
-            //Concatenar Array en un String 
-            //listNames = string.Join("|",lists);
- 
-            foreach (var item in lists)
-            {               
-                listNames += (item) + "|";
-            }
-            listNames = listNames.TrimEnd('|');
-
-            Preferences.setString(this, Preferences.getLists(), listNames);
+          
 
             //List<Foods> foods = new List<Foods>();
 
@@ -67,7 +44,6 @@ namespace ShoppingList.Controller
             {
                 EditText edit = FindViewById<EditText>(Resource.Id.editText);
 
-                //foods.Add(new Foods { Name = edit.Text });
 
                 String elements = Preferences.getString(this, Preferences.getLists());
 
@@ -86,6 +62,48 @@ namespace ShoppingList.Controller
             };
            
         }
+
+
+
+
+
+
+
+        public void addNewList()
+        {
+            //Accedo a las listas
+            String listNames = Preferences.getString(this, Preferences.getLists());
+            ArrayList lists = new ArrayList();
+
+            if (listNames != "")
+            {
+                lists.AddRange(listNames.Split('|'));
+            }
+
+            nameList = "list_" + (lists.Count + 1);
+
+            Preferences.setString(this, nameList, "");
+
+            lists.Add(nameList);
+
+            //Concatenar Array en un String 
+            //listNames = string.Join("|",lists);
+
+            foreach (var item in lists)
+            {
+                listNames += (item) + "|";
+            }
+            listNames = listNames.TrimEnd('|');
+
+            Preferences.setString(this, Preferences.getLists(), listNames);
+        }
+
+
+
+
+
+
+
 
  /*        protected override void OnResume()
         {

@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 using System.Collections;
 using ShoppingList.Models;
+using ShoppingList.Adapters;
+
 
 namespace ShoppingList.Controller
 {
@@ -19,6 +21,9 @@ namespace ShoppingList.Controller
     {
 
         Button btnNewList;
+        Button btnDeleteAllElelements;
+        ListView myListView;
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -26,12 +31,41 @@ namespace ShoppingList.Controller
             SetContentView(Resource.Layout.Init);
 
             btnNewList = FindViewById<Button>(Resource.Id.NewList);
+            btnDeleteAllElelements = FindViewById<Button>(Resource.Id.deleteAllElements);
 
             btnNewList.Click += btnNewList_Click;
+            btnDeleteAllElelements.Click += btnDeleteAllElelements_Click;
 
             viewList();
+        }
+  
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+            viewList();
+        }
 
+        public void viewList()
+        {
+            String listNames = Preferences.getString(this, Preferences.getLists());
+            ArrayList lists = new ArrayList();
+           
+            lists.AddRange(listNames.Split('|'));
+            
+            List<Item> listItems = new List<Item>();
+
+            foreach (String str in lists)
+            {
+                listItems.Add(new Item { NameItem = str});
+
+            }
+
+            if (listItems[0].NameItem != "")
+            {
+                myListView = FindViewById<ListView>(Resource.Id.idViewList);
+                myListView.Adapter = new ItemListAdapter(this, listItems);
+            }
         }
 
         private void btnNewList_Click(object sender, EventArgs e)
@@ -40,26 +74,9 @@ namespace ShoppingList.Controller
             StartActivity(newIntent);
         }
 
-        public void viewList()
+        private void btnDeleteAllElelements_Click(object sender, EventArgs e)
         {
-            String listNames = Preferences.getString(this, Preferences.getLists());
-            ArrayList lists = new ArrayList();
-
-            if (listNames == "")
-            {
-                lists[0] = "No lists";
-            } else {
-                lists.AddRange(listNames.Split('|'));
-            }
-            List<Item> listItems = new List<Item>();
-
-            foreach (String str in lists)
-            {
-                listItems.Add(new Item{ NameItem = str});
-
-            }
-            // Capturar el ListView de axml por su ID
-            // Primera tabla de sinceo
+            Preferences.setString(this, Preferences.getLists(), "");
         }
     }
 }

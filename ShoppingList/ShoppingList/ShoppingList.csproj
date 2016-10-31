@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\ItemListAdapter.cs" />
     <Compile Include="Controller\Init.cs" />
     <Compile Include="Controller\NewList.cs" />
     <Compile Include="MainActivity.cs" />
