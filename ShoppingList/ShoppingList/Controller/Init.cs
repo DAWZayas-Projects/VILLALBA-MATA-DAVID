@@ -30,12 +30,15 @@ namespace ShoppingList.Controller
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Init);
 
-            btnNewList = FindViewById<Button>(Resource.Id.NewList);
+            btnNewList = FindViewById<Button>(Resource.Id.newList);
             btnDeleteAllElelements = FindViewById<Button>(Resource.Id.deleteAllElements);
             myListView = FindViewById<ListView>(Resource.Id.idViewList);
 
             btnNewList.Click += btnNewList_Click;
             btnDeleteAllElelements.Click += btnDeleteAllElelements_Click;
+
+            
+
         }
   
 
@@ -60,7 +63,7 @@ namespace ShoppingList.Controller
 
             }
      
-             myListView.Adapter = new ItemListAdapter(this, listItems);
+             myListView.Adapter = new ButtonAdapter(this, listItems);
             
         }
 

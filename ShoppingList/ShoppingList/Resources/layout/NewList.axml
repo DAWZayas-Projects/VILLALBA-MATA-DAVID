@@ -9,11 +9,10 @@
     android:id="@+id/linearLayout1">
     <LinearLayout
         android:orientation="vertical"
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutTop">
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayoutTop"
+        android:layout_weight="3">
         <EditText
             android:id="@+id/newList"
             android:layout_width="match_parent"
@@ -24,12 +23,10 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="match_parent"
         android:id="@+id/linearLayoutCenter"
-        android:layout_gravity="center_vertical"
-        android:layout_height="390dp">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
         <ListView
             android:id="@+id/android:list"
             android:layout_width="wrap_content"
@@ -44,9 +41,10 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/linearLayoutBottom"
-        android:layout_gravity="bottom">
+        android:gravity="bottom"
+        android:layout_weight="3">
         <Button
             android:text="Save"
             android:layout_width="match_parent"

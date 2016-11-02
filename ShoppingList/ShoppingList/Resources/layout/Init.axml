@@ -9,13 +9,13 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayoutTop"
         android:layout_weight="4"
         android:minWidth="25px"
         android:minHeight="25px"
         android:gravity="right">
         <Button
-            android:id="@+id/NewList"
+            android:id="@+id/newList"
             android:background="@android:drawable/ic_input_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/linearLayout3"
+        android:id="@+id/linearLayoutMid"
         android:layout_weight="1">
         <ListView
             android:minWidth="25px"
@@ -43,16 +43,7 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout5">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/linearLayout4"
-            android:layout_weight="1"
-            android:layout_gravity="bottom" />
+        android:id="@+id/linearLayoutBotton">
         <Button
             android:text="Delete all elements"
             android:id="@+id/deleteAllElements"

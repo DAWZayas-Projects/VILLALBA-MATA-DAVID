@@ -10,15 +10,16 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using ShoppingList.Models;
+using Java.Util;
 
 namespace ShoppingList.Adapters
 {
-    class ItemListAdapter : BaseAdapter<Item>
+    class ButtonAdapter : BaseAdapter<Item>
     {
         private readonly Activity _context;
         private readonly List<Item> _items;
 
-        public ItemListAdapter(Activity context, List<Item> items) : base()
+        public ButtonAdapter(Activity context, List<Item> items) : base()
         {
             _context = context;
             _items = items;
@@ -35,10 +36,18 @@ namespace ShoppingList.Adapters
 
             if (convertView == null)
             {
-               if(item.NameItem != "")
+                if (item.NameItem != "")
                 {
                     convertView = _context.LayoutInflater.Inflate(Resource.Layout.View_row, null);
                     convertView.FindViewById<TextView>(Resource.Id.tvViewRow).Text = item.NameItem;
+                    Item item2 = this._items[position];
+                    String name = item2.NameItem;
+
+                    convertView.FindViewById<TextView>(Resource.Id.tvViewRow).Text = name;
+
+                    Button btnDelete = convertView.FindViewById<Button>(Resource.Id.btnDelete);
+                    btnDelete.Tag = name;
+                    btnDelete.SetOnClickListener(new ButtonClickListener(this._context));
                 }
                 else
                 {
@@ -46,12 +55,35 @@ namespace ShoppingList.Adapters
                     convertView.FindViewById<TextView>(Resource.Id.NameSimpleRow).Text = item.NameItem;
                 }
             }
-               
-            
 
             
+
 
             return convertView;
+        }
+
+        private class ButtonClickListener : Java.Lang.Object, View.IOnClickListener
+        {
+            private Activity activity;
+
+            public ButtonClickListener(Activity activity)
+            {
+                this.activity = activity;
+            }
+
+            public void OnClick(View v)
+            {
+                String rowDeleteName = (String)v.Tag;
+                String listNames = Preferences.getString(this.activity, Preferences.getLists());
+                listNames = listNames.Replace(rowDeleteName, "");
+                listNames = listNames.Replace("||", "|");
+                listNames = listNames.TrimEnd('|');
+                listNames = listNames.TrimStart('|');
+                Preferences.setString(this.activity, Preferences.getLists(), listNames);
+                Intent Init = new Intent(this.activity, typeof(ShoppingList.Controller.Init));
+                this.activity.StartActivity(Init);
+
+            }
         }
 
         public override int Count => _items.Count;
@@ -60,3 +92,4 @@ namespace ShoppingList.Adapters
             => _items[position];
     }
 }
+

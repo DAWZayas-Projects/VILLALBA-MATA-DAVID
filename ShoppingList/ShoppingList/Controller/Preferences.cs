@@ -14,6 +14,7 @@ using Android.Preferences;
 using Java.IO;
 using Android.Provider;
 using System.IO;
+using ShoppingList.Adapters;
 
 namespace ShoppingList
 {
@@ -87,5 +88,6 @@ namespace ShoppingList
             setInt(c, id_list, -1);
         
         }
+
     }
 }
