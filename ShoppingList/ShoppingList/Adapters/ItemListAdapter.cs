@@ -48,6 +48,7 @@ namespace ShoppingList.Adapters
                     Button btnDelete = convertView.FindViewById<Button>(Resource.Id.btnDelete);
                     btnDelete.Tag = name;
                     btnDelete.SetOnClickListener(new ButtonClickListener(this._context));
+
                 }
                 else
                 {
@@ -73,16 +74,19 @@ namespace ShoppingList.Adapters
 
             public void OnClick(View v)
             {
-                String rowDeleteName = (String)v.Tag;
-                String listNames = Preferences.getString(this.activity, Preferences.getLists());
-                listNames = listNames.Replace(rowDeleteName, "");
-                listNames = listNames.Replace("||", "|");
-                listNames = listNames.TrimEnd('|');
-                listNames = listNames.TrimStart('|');
-                Preferences.setString(this.activity, Preferences.getLists(), listNames);
-                Intent Init = new Intent(this.activity, typeof(ShoppingList.Controller.Init));
-                this.activity.StartActivity(Init);
-
+                            
+                 String rowDeleteName = (String)v.Tag;
+                 String listNames = Preferences.getString(this.activity, Preferences.getLists());
+                 //Remplace the name for "".
+                 listNames = listNames.Replace(rowDeleteName, "");
+                 // Structure of the string --> name|name|name|name|name ...
+                 listNames = listNames.Replace("||", "|");
+                 listNames = listNames.TrimEnd('|');   //Remove | to end String 
+                 listNames = listNames.TrimStart('|'); // Remove | to start string
+                 Preferences.setString(this.activity, Preferences.getLists(), listNames);
+                 Intent Init = new Intent(this.activity, typeof(ShoppingList.Controller.Init));
+                 this.activity.StartActivity(Init);
+                 
             }
         }
 

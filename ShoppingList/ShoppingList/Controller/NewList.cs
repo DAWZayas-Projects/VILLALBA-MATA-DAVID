@@ -12,15 +12,21 @@ using Android.Widget;
 using System.Collections;
 using ShoppingList.Controller;
 using Android.Preferences;
+using ShoppingList.Models;
+using ShoppingList.Adapters;
+
+
 namespace ShoppingList.Controller
 {
     [Activity(Label = "NewList")]
-    public class NewList : ListActivity
+    public class NewList : Activity
     {
         //vars
         Button btnSave;
         Button btnBack;
         EditText newList;
+        ListView myListView;
+        Boolean rep = false;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -31,21 +37,53 @@ namespace ShoppingList.Controller
             btnSave = FindViewById<Button>  (Resource.Id.save);
             newList = FindViewById<EditText>(Resource.Id.newList);
             btnBack = FindViewById<Button>  (Resource.Id.back);
+            myListView = FindViewById <ListView>(Resource.Id.listView);
 
             btnSave.Click += btnSave_Click;
             btnBack.Click += btnBack_Click;
+            
 
         }
+
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            if (rep == true)
+            {
+                viewList();
+            }
+        }
+         public void viewList()
+        {
+            String listNames = Preferences.getString(this, Preferences.getLists());
+            ArrayList lists = new ArrayList();
+
+            lists.AddRange(listNames.Split('|'));
+
+            List<Item> listItems = new List<Item>();
+
+            foreach (String str in lists)
+            {
+                listItems.Add(new Item { NameItem = str });
+
+            }
+
+            myListView.Adapter = new ButtonAdapter(this, listItems);
+
+        }
+
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             Finish();
+           
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             //vars 
-            Boolean bl;
+            Boolean bl;          
             String conversion;        
   
             //Accedo a las listas
@@ -68,13 +106,16 @@ namespace ShoppingList.Controller
                 Toast.MakeText(this, "already exist name "+newList.Text, ToastLength.Long).Show();
                 newList.Text = "";
                 newList.RequestFocus();
+                rep = true;
+                OnResume();
+
             }
 
             conversion = ConversionToString(lists);
 
             Preferences.setString(this, Preferences.getLists(), conversion);
 
-            Finish();
+            newList.Text = "";
         }
 
         public String ConversionToString(ArrayList arrayList)

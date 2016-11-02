@@ -15,6 +15,7 @@ namespace ShoppingList.Models
     class Item
     {
         public string NameItem { get; set; }
+        public string Quantity { get; set; }
 
     }
 }

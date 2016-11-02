@@ -52,6 +52,7 @@
     <Compile Include="Adapters\ItemListAdapter.cs" />
     <Compile Include="Controller\Init.cs" />
     <Compile Include="Controller\NewList.cs" />
+    <Compile Include="Controller\ViewList.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Controller\Preferences.cs" />
     <Compile Include="Models\Item.cs" />
@@ -69,6 +70,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Simple_row.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ViewList.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

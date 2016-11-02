@@ -69,11 +69,8 @@ namespace ShoppingList
 			// aapt resource value: 0x7f05000f
 			public const int btnDelete = 2131034127;
 			
-			// aapt resource value: 0x7f050006
-			public const int deleteAllElements = 2131034118;
-			
-			// aapt resource value: 0x7f050004
-			public const int idViewList = 2131034116;
+			// aapt resource value: 0x7f050005
+			public const int deleteAllElements = 2131034117;
 			
 			// aapt resource value: 0x7f050000
 			public const int linearLayout1 = 2131034112;
@@ -81,11 +78,11 @@ namespace ShoppingList
 			// aapt resource value: 0x7f050008
 			public const int linearLayoutBottom = 2131034120;
 			
-			// aapt resource value: 0x7f050005
-			public const int linearLayoutBotton = 2131034117;
+			// aapt resource value: 0x7f050004
+			public const int linearLayoutBotton = 2131034116;
 			
-			// aapt resource value: 0x7f050007
-			public const int linearLayoutCenter = 2131034119;
+			// aapt resource value: 0x7f050006
+			public const int linearLayoutCenter = 2131034118;
 			
 			// aapt resource value: 0x7f05000e
 			public const int linearLayoutLeft = 2131034126;
@@ -104,6 +101,9 @@ namespace ShoppingList
 			
 			// aapt resource value: 0x7f050001
 			public const int linearLayoutTop = 2131034113;
+			
+			// aapt resource value: 0x7f050007
+			public const int listView = 2131034119;
 			
 			// aapt resource value: 0x7f050002
 			public const int newList = 2131034114;
@@ -138,6 +138,9 @@ namespace ShoppingList
 			
 			// aapt resource value: 0x7f030003
 			public const int View_row = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int ViewList = 2130903044;
 			
 			static Layout()
 			{

@@ -17,12 +17,12 @@ using ShoppingList.Adapters;
 namespace ShoppingList.Controller
 {
     [Activity(Label = "Init")]
-    public class Init : Activity
+    public class Init : ListActivity
     {
 
         Button btnNewList;
         Button btnDeleteAllElelements;
-        ListView myListView;
+       // ListView myListView;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,13 +32,12 @@ namespace ShoppingList.Controller
 
             btnNewList = FindViewById<Button>(Resource.Id.newList);
             btnDeleteAllElelements = FindViewById<Button>(Resource.Id.deleteAllElements);
-            myListView = FindViewById<ListView>(Resource.Id.idViewList);
+           
 
             btnNewList.Click += btnNewList_Click;
             btnDeleteAllElelements.Click += btnDeleteAllElelements_Click;
 
-            
-
+            ListView.ItemLongClick += ListView_ItemLongClick;
         }
   
 
@@ -50,7 +49,25 @@ namespace ShoppingList.Controller
 
         public void viewList()
         {
+
             String listNames = Preferences.getString(this, Preferences.getLists());
+            ArrayList lists = new ArrayList();
+
+            lists.AddRange(listNames.Split('|'));
+
+            List<Item> listItems = new List<Item>();
+
+            foreach (String str in lists)
+            {
+                listItems.Add(new Item { NameItem = str });
+
+            }
+
+            string[] arrayString = listItems.Select(x => x.NameItem).ToArray();
+            ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arrayString);
+            
+            // Sacar lista con boton 
+            /*String listNames = Preferences.getString(this, Preferences.getLists());
             ArrayList lists = new ArrayList();
            
             lists.AddRange(listNames.Split('|'));
@@ -62,11 +79,11 @@ namespace ShoppingList.Controller
                 listItems.Add(new Item { NameItem = str});
 
             }
-     
-             myListView.Adapter = new ButtonAdapter(this, listItems);
-            
-        }
 
+            myListView.Adapter = new ButtonAdapter(this, listItems);
+            */
+        }
+       
         private void btnNewList_Click(object sender, EventArgs e)
         {
             Intent newIntent = new Intent(this, typeof(NewList));
@@ -76,6 +93,27 @@ namespace ShoppingList.Controller
         private void btnDeleteAllElelements_Click(object sender, EventArgs e)
         {
             Preferences.setString(this, Preferences.getLists(), "");
+            OnResume();
+        }
+
+        protected override void OnListItemClick(ListView l, View v, int position, long id)
+        {
+            Intent viewList = new Intent(this, typeof(ViewList));
+            StartActivity(viewList);
+        }
+
+        private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+            string rowDeleteName = (string)this.ListAdapter.GetItem(e.Position);
+                    
+            String listNames = Preferences.getString(this, Preferences.getLists());
+            //Remplace the name for "".
+            listNames = listNames.Replace(rowDeleteName, "");
+            // Structure of the string --> name|name|name|name|name ...
+            listNames = listNames.Replace("||", "|");
+            listNames = listNames.TrimEnd('|');   //Remove | to end String 
+            listNames = listNames.TrimStart('|'); // Remove | to start string
+            Preferences.setString(this, Preferences.getLists(), listNames);
             OnResume();
         }
     }
