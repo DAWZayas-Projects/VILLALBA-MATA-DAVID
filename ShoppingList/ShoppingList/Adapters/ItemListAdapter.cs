@@ -74,7 +74,7 @@ namespace ShoppingList.Adapters
 
             public void OnClick(View v)
             {
-                            
+                  /*          
                  String rowDeleteName = (String)v.Tag;
                  String listNames = Preferences.getString(this.activity, Preferences.getLists());
                  //Remplace the name for "".
@@ -86,7 +86,7 @@ namespace ShoppingList.Adapters
                  Preferences.setString(this.activity, Preferences.getLists(), listNames);
                  Intent Init = new Intent(this.activity, typeof(ShoppingList.Controller.Init));
                  this.activity.StartActivity(Init);
-                 
+                 */
             }
         }
 

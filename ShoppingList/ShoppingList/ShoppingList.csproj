@@ -55,6 +55,7 @@
     <Compile Include="Controller\ViewList.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Controller\Preferences.cs" />
+    <Compile Include="Models\Confirm_dialog.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

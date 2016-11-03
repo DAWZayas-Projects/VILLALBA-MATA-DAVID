@@ -56,20 +56,12 @@ namespace ShoppingList.Controller
         }
          public void viewList()
         {
-            String listNames = Preferences.getString(this, Preferences.getLists());
-            ArrayList lists = new ArrayList();
-
-            lists.AddRange(listNames.Split('|'));
-
-            List<Item> listItems = new List<Item>();
-
-            foreach (String str in lists)
-            {
-                listItems.Add(new Item { NameItem = str });
-
-            }
-
+           
+            List<Item> listItems = new List<Item>();                          
+            listItems.Add(new Item { NameItem = newList.Text });
             myListView.Adapter = new ButtonAdapter(this, listItems);
+            newList.Text = "";
+            newList.RequestFocus();
 
         }
 
@@ -103,9 +95,7 @@ namespace ShoppingList.Controller
             {                
                 lists.Add(newList.Text);
             } else {
-                Toast.MakeText(this, "already exist name "+newList.Text, ToastLength.Long).Show();
-                newList.Text = "";
-                newList.RequestFocus();
+                Toast.MakeText(this, "already exist name "+newList.Text, ToastLength.Long).Show();               
                 rep = true;
                 OnResume();
 

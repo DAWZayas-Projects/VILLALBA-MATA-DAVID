@@ -12,7 +12,7 @@ using Android.Widget;
 using System.Collections;
 using ShoppingList.Models;
 using ShoppingList.Adapters;
-
+using ShoppingList.Model;
 
 namespace ShoppingList.Controller
 {
@@ -22,7 +22,8 @@ namespace ShoppingList.Controller
 
         Button btnNewList;
         Button btnDeleteAllElelements;
-       // ListView myListView;
+        CustomDialog customDialog;
+        // ListView myListView;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -104,17 +105,25 @@ namespace ShoppingList.Controller
 
         private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
-            string rowDeleteName = (string)this.ListAdapter.GetItem(e.Position);
-                    
-            String listNames = Preferences.getString(this, Preferences.getLists());
-            //Remplace the name for "".
-            listNames = listNames.Replace(rowDeleteName, "");
-            // Structure of the string --> name|name|name|name|name ...
-            listNames = listNames.Replace("||", "|");
-            listNames = listNames.TrimEnd('|');   //Remove | to end String 
-            listNames = listNames.TrimStart('|'); // Remove | to start string
-            Preferences.setString(this, Preferences.getLists(), listNames);
-            OnResume();
-        }
+
+            customDialog = new CustomDialog(this);     
+            customDialog.yesBtn.Click += delegate
+
+            {
+                string rowDeleteName = (string)this.ListAdapter.GetItem(e.Position);
+                String listNames = Preferences.getString(this, Preferences.getLists());
+
+                //Remplace the name for "".
+                listNames = listNames.Replace(rowDeleteName, "");
+
+                // Structure of the string --> name|name|name|name|name ...
+                listNames = listNames.Replace("||", "|");
+                listNames = listNames.TrimEnd('|');   //Remove | to end String 
+                listNames = listNames.TrimStart('|'); // Remove | to start string
+                Preferences.setString(this, Preferences.getLists(), listNames);
+                OnResume();
+            };
+            
+        }        
     }
 }
