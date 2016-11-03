@@ -19,7 +19,7 @@ using ShoppingList.Adapters;
 namespace ShoppingList.Controller
 {
     [Activity(Label = "NewList")]
-    public class NewList : Activity
+    public class NewList : ListActivity
     {
         //vars
         Button btnSave;
@@ -37,7 +37,6 @@ namespace ShoppingList.Controller
             btnSave = FindViewById<Button>  (Resource.Id.save);
             newList = FindViewById<EditText>(Resource.Id.newList);
             btnBack = FindViewById<Button>  (Resource.Id.back);
-            myListView = FindViewById <ListView>(Resource.Id.listView);
 
             btnSave.Click += btnSave_Click;
             btnBack.Click += btnBack_Click;
@@ -59,9 +58,8 @@ namespace ShoppingList.Controller
            
             List<Item> listItems = new List<Item>();                          
             listItems.Add(new Item { NameItem = newList.Text });
-            myListView.Adapter = new ButtonAdapter(this, listItems);
-            newList.Text = "";
-            newList.RequestFocus();
+            string[] arrayString = listItems.Select(x => x.NameItem).ToArray();
+            ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arrayString);
 
         }
 
@@ -136,6 +134,19 @@ namespace ShoppingList.Controller
             {
                 return false;
             }
-        }     
+        }
+
+        protected override void OnListItemClick(ListView l, View v, int position, long id)
+        {
+            Intent viewList = new Intent(this, typeof(ViewList));
+            StartActivity(viewList);
+        }
+
+        private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+
+           
+
+        }
     }
 }
