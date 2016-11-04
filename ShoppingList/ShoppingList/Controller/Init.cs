@@ -22,6 +22,7 @@ namespace ShoppingList.Controller
 
         Button btnNewList;
         Button btnDeleteAllElelements;
+        LinearLayout textInfoItemlist;
         CustomDialog customDialog;
         // ListView myListView;
 
@@ -33,7 +34,8 @@ namespace ShoppingList.Controller
 
             btnNewList = FindViewById<Button>(Resource.Id.newList);
             btnDeleteAllElelements = FindViewById<Button>(Resource.Id.deleteAllElements);
-           
+            textInfoItemlist = FindViewById<LinearLayout>(Resource.Id.linearLayoutInfo);
+
 
             btnNewList.Click += btnNewList_Click;
             btnDeleteAllElelements.Click += btnDeleteAllElelements_Click;
@@ -46,6 +48,19 @@ namespace ShoppingList.Controller
         {
             base.OnResume();
             viewList();
+            informationActionsItemList();
+        }
+
+        public void informationActionsItemList()
+        {
+            String listNames = Preferences.getString(this, Preferences.getLists());         
+            if(listNames == "")
+            {
+                textInfoItemlist.Visibility = ViewStates.Invisible;
+            } else {
+                textInfoItemlist.Visibility = ViewStates.Visible;
+            }
+            
         }
 
         public void viewList()
