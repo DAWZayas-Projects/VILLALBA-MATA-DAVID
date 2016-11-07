@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8B0D7F41-AC48-463C-A987-5D8B767E8979}</ProjectGuid>
+    <ProjectGuid>{4955D5B7-46DF-4D69-9AC9-8D346E36D727}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ShoppingList</RootNamespace>
-    <AssemblyName>ShoppingList</AssemblyName>
+    <RootNamespace>ListManager</RootNamespace>
+    <AssemblyName>ListManager</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -52,9 +52,9 @@
     <Compile Include="Adapters\ItemListAdapter.cs" />
     <Compile Include="Controller\Init.cs" />
     <Compile Include="Controller\NewList.cs" />
+    <Compile Include="Controller\Preferences.cs" />
     <Compile Include="Controller\ViewList.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Controller\Preferences.cs" />
     <Compile Include="Models\Confirm_dialog.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -64,23 +64,11 @@
     <None Include="GettingStarted.Xamarin" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\NewList.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\View_row.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\Simple_row.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\ViewList.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\Init.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Init.axml" />
+    <AndroidResource Include="Resources\layout\NewList.axml" />
+    <AndroidResource Include="Resources\layout\Simple_row.axml" />
+    <AndroidResource Include="Resources\layout\View_row.axml" />
+    <AndroidResource Include="Resources\layout\ViewList.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

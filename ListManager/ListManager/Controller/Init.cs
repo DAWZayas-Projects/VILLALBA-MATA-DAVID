@@ -14,6 +14,7 @@ using ListManager.Models;
 using ListManager.Adapters;
 using ListManager.Model;
 
+
 namespace ListManager.Controller
 {
     [Activity(Label = "Init")]
@@ -108,8 +109,14 @@ namespace ListManager.Controller
 
         private void btnDeleteAllElelements_Click(object sender, EventArgs e)
         {
-            Preferences.setString(this, Preferences.getLists(), "");
-            OnResume();
+            customDialog = new CustomDialog(this);
+            customDialog.yesBtn.Click += delegate
+            {
+                Preferences.setString(this, Preferences.getLists(), "");
+                OnResume();
+            };
+            
+            
         }
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)

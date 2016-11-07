@@ -18,6 +18,22 @@
             android:orientation="vertical"
             android:minWidth="25px"
             android:minHeight="25px"
+            android:id="@+id/linearLayoutButtonAdd"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+            <Button
+                android:id="@+id/newList"
+                android:background="@android:drawable/ic_input_add"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/linearLayoutInfo"
@@ -37,12 +53,12 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/linearLayoutButton"
-            android:layout_weight="13"
-            android:gravity="center_vertical">
+            android:id="@+id/linearLayoutButtonModify"
+            android:gravity="center_vertical"
+            android:layout_weight="5">
             <Button
-                android:id="@+id/newList"
-                android:background="@android:drawable/ic_input_add"
+                android:id="@+id/modifyList"
+                android:background="@android:drawable/ic_menu_edit"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
