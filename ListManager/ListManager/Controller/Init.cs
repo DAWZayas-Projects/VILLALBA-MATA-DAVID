@@ -23,9 +23,10 @@ namespace ListManager.Controller
 
         Button btnNewList;
         Button btnDeleteAllElelements;
+        Button btnModifyList;
         LinearLayout textInfoItemlist;
         CustomDialog customDialog;
-        // ListView myListView;
+        
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -33,15 +34,17 @@ namespace ListManager.Controller
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Init);
 
-            btnNewList = FindViewById<Button>(Resource.Id.newList);
-            btnDeleteAllElelements = FindViewById<Button>(Resource.Id.deleteAllElements);
-            textInfoItemlist = FindViewById<LinearLayout>(Resource.Id.linearLayoutInfo);
+            btnNewList             = FindViewById<Button>      (Resource.Id.newList);
+            btnDeleteAllElelements = FindViewById<Button>      (Resource.Id.deleteAllElements);
+            btnModifyList          = FindViewById<Button>      (Resource.Id.modifyList);
+            textInfoItemlist       = FindViewById<LinearLayout>(Resource.Id.linearLayoutInfo);
 
 
-            btnNewList.Click += btnNewList_Click;
+
+            btnNewList.Click             += btnNewList_Click;
             btnDeleteAllElelements.Click += btnDeleteAllElelements_Click;
-
-            ListView.ItemLongClick += ListView_ItemLongClick;
+            btnModifyList.Click          += btnModifyList_Click;
+            ListView.ItemLongClick       += ListView_ItemLongClick;
         }
   
 
@@ -83,41 +86,34 @@ namespace ListManager.Controller
             string[] arrayString = listItems.Select(x => x.NameItem).ToArray();
             ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arrayString);
             
-            // Sacar lista con boton 
-            /*String listNames = Preferences.getString(this, Preferences.getLists());
-            ArrayList lists = new ArrayList();
-           
-            lists.AddRange(listNames.Split('|'));
-            
-            List<Item> listItems = new List<Item>();
-
-            foreach (String str in lists)
-            {
-                listItems.Add(new Item { NameItem = str});
-
-            }
-
-            myListView.Adapter = new ButtonAdapter(this, listItems);
-            */
+          
         }
        
         private void btnNewList_Click(object sender, EventArgs e)
         {
-            Intent newIntent = new Intent(this, typeof(NewList));
+            Intent newIntent = new Intent(this, typeof(AddElement));
             StartActivity(newIntent);
         }
 
         private void btnDeleteAllElelements_Click(object sender, EventArgs e)
         {
-            customDialog = new CustomDialog(this);
-            customDialog.yesBtn.Click += delegate
+            String listNames = Preferences.getString(this, Preferences.getLists());
+            if (listNames != "")
             {
-                Preferences.setString(this, Preferences.getLists(), "");
-                OnResume();
-            };
-            
-            
+                customDialog = new CustomDialog(this);
+                customDialog.yesBtn.Click += delegate
+                {
+                    Preferences.setString(this, Preferences.getLists(), "");
+                    OnResume();
+                };
+            }                             
         }
+
+        private void btnModifyList_Click(object sender, EventArgs e)
+        {
+            Intent modifyList = new Intent(this, typeof(ModifyList));
+            StartActivity(modifyList);
+}
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)
         {

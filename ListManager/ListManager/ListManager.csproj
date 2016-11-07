@@ -51,7 +51,8 @@
   <ItemGroup>
     <Compile Include="Adapters\ItemListAdapter.cs" />
     <Compile Include="Controller\Init.cs" />
-    <Compile Include="Controller\NewList.cs" />
+    <Compile Include="Controller\ModifyList.cs" />
+    <Compile Include="Controller\AddElement.cs" />
     <Compile Include="Controller\Preferences.cs" />
     <Compile Include="Controller\ViewList.cs" />
     <Compile Include="MainActivity.cs" />
@@ -65,7 +66,7 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\Init.axml" />
-    <AndroidResource Include="Resources\layout\NewList.axml" />
+    <AndroidResource Include="Resources\layout\AddElement.axml" />
     <AndroidResource Include="Resources\layout\Simple_row.axml" />
     <AndroidResource Include="Resources\layout\View_row.axml" />
     <AndroidResource Include="Resources\layout\ViewList.axml" />

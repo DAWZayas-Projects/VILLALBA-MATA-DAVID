@@ -19,28 +19,32 @@ using ListManager.Adapters;
 namespace ListManager.Controller
 {
     [Activity(Label = "NewList")]
-    public class NewList : ListActivity
+    public class AddElement : ListActivity
     {
         //vars
         Button btnSave;
         Button btnBack;
-        EditText newList;
-        ListView myListView;
+        Button btnEmptyList;
+        EditText addElement;
+        
         Boolean rep = false;
 
         protected override void OnCreate(Bundle bundle)
         {
 
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.NewList);
+            SetContentView(Resource.Layout.AddElement);
 
-            btnSave = FindViewById<Button>  (Resource.Id.save);
-            newList = FindViewById<EditText>(Resource.Id.newList);
-            btnBack = FindViewById<Button>  (Resource.Id.back);
+            btnSave = FindViewById<Button>(Resource.Id.save);
+            addElement = FindViewById<EditText>(Resource.Id.addElement);
+            btnBack = FindViewById<Button>(Resource.Id.back);
+            btnEmptyList = FindViewById<Button>(Resource.Id.btnEmptyList);     
+
 
             btnSave.Click += btnSave_Click;
             btnBack.Click += btnBack_Click;
-            
+
+            btnEmptyList.Visibility = ViewStates.Invisible;
 
         }
 
@@ -57,7 +61,7 @@ namespace ListManager.Controller
         {
            
             List<Item> listItems = new List<Item>();                          
-            listItems.Add(new Item { NameItem = newList.Text });
+            listItems.Add(new Item { NameItem = addElement.Text });
             string[] arrayString = listItems.Select(x => x.NameItem).ToArray();
             ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arrayString);
 
@@ -72,8 +76,7 @@ namespace ListManager.Controller
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //vars 
-            Boolean bl;          
+            //vars               
             String conversion;        
   
             //Accedo a las listas
@@ -84,17 +87,17 @@ namespace ListManager.Controller
             {
                 lists.AddRange(listNames.Split('|'));
             }
-            
-            //Compruebo si existe el nombre
-            bl = ExistList(lists, newList.Text);
 
-            //Si no existe el nombre (False) los guardamos.
-            if(bl == false)
-            {                
-                lists.Add(newList.Text);
-            } else {
-                Toast.MakeText(this, "already exist name "+newList.Text, ToastLength.Long).Show();               
-                rep = true;
+            //Compruebo si existe el nombre. Si no existe el nombre los guardamos.
+            String element = addElement.Text.ToLower();            
+
+            if (!listNames.Contains(element))
+            {             
+                lists.Add(element);
+            }
+            else
+            {
+                Toast.MakeText(this, "already exist name " + element, ToastLength.Long).Show();
                 OnResume();
 
             }
@@ -103,7 +106,7 @@ namespace ListManager.Controller
 
             Preferences.setString(this, Preferences.getLists(), conversion);
 
-            newList.Text = "";
+            addElement.Text = "";
         }
 
         public String ConversionToString(ArrayList arrayList)
@@ -120,7 +123,7 @@ namespace ListManager.Controller
             return listNames;
         }
 
-        public Boolean ExistList(ArrayList array, String name)
+       /* public Boolean ExistList(ArrayList array, String name)
         {
             int exist;
 
@@ -134,7 +137,8 @@ namespace ListManager.Controller
             {
                 return false;
             }
-        }
+        }*/
+     
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)
         {
