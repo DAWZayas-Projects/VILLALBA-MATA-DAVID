@@ -10,13 +10,13 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Collections;
-using ShoppingList.Controller;
+using ListManager.Controller;
 using Android.Preferences;
-using ShoppingList.Models;
-using ShoppingList.Adapters;
+using ListManager.Models;
+using ListManager.Adapters;
 
 
-namespace ShoppingList.Controller
+namespace ListManager.Controller
 {
     [Activity(Label = "NewList")]
     public class NewList : ListActivity

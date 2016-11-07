@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("ShoppingList.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("ListManager.Resource", IsApplication=true)]
 
-namespace ShoppingList
+namespace ListManager
 {
 	
 	

@@ -1,7 +1,11 @@
 # VILLALBA-MATA-DAVID
 
-El objetivo del proyecto, es una aplicación sencilla que realizaremos con una tecnologia de la que no tenemos conociminetos.
-La principal idea del proyecto es un carrito de la compra.
-Principalmente se permitirá crear listas, agregar alimentos, eliminarlos ...
+La principal idea del proyecto es un gestor de listas.
+Principalmente se permitirá crear listas, eliminar ... 
 
 La aplicación se realizara con Xamarin (https://www.xamarin.com/).
+
+
+Para ver la aplicación: 
+	1. Intalar Xamarin y emular la solución.
+	2. Instalar la aplicación en tu smartphone android, a travesw del archivo .apk

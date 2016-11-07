@@ -5,11 +5,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using ShoppingList.Controller;
+using ListManager.Controller;
 
-namespace ShoppingList
+namespace ListManager
 {
-    [Activity(Label = "ShoppingList", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "ListManager", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
 

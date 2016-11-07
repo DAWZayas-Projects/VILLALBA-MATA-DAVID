@@ -14,9 +14,9 @@ using Android.Preferences;
 using Java.IO;
 using Android.Provider;
 using System.IO;
-using ShoppingList.Adapters;
+using ListManager.Adapters;
 
-namespace ShoppingList
+namespace ListManager
 {
     class Preferences
     {
@@ -77,7 +77,7 @@ namespace ShoppingList
             var i = getInt(c, first_time_execution);
             if (i == 0)
             {
-                string folder = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures) + "/ShoppingList";
+                string folder = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures) + "/ListManager";
                 if (Directory.Exists(folder))
                 {
                     Directory.Delete(folder, true);

@@ -10,11 +10,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Collections;
-using ShoppingList.Models;
-using ShoppingList.Adapters;
-using ShoppingList.Model;
+using ListManager.Models;
+using ListManager.Adapters;
+using ListManager.Model;
 
-namespace ShoppingList.Controller
+namespace ListManager.Controller
 {
     [Activity(Label = "Init")]
     public class Init : ListActivity

@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace ShoppingList.Controller
+namespace ListManager.Controller
 {
     [Activity(Label = "ViewList")]
     public class ViewList : Activity

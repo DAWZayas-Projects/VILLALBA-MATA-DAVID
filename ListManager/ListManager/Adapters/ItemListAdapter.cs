@@ -9,10 +9,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using ShoppingList.Models;
+using ListManager.Models;
 using Java.Util;
 
-namespace ShoppingList.Adapters
+namespace ListManager.Adapters
 {
     class ButtonAdapter : BaseAdapter<Item>
     {
@@ -84,7 +84,7 @@ namespace ShoppingList.Adapters
                  listNames = listNames.TrimEnd('|');   //Remove | to end String 
                  listNames = listNames.TrimStart('|'); // Remove | to start string
                  Preferences.setString(this.activity, Preferences.getLists(), listNames);
-                 Intent Init = new Intent(this.activity, typeof(ShoppingList.Controller.Init));
+                 Intent Init = new Intent(this.activity, typeof(ListManager.Controller.Init));
                  this.activity.StartActivity(Init);
                  */
             }

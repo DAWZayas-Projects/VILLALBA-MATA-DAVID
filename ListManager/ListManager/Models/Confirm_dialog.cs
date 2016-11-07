@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace ShoppingList.Model
+namespace ListManager.Model
 {
     class CustomDialog
     {
