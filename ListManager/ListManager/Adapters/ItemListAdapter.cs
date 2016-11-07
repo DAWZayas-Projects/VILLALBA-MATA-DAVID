@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using ListManager.Models;
+using ListManager.Controller;
 using Java.Util;
 
 namespace ListManager.Adapters
@@ -18,11 +19,14 @@ namespace ListManager.Adapters
     {
         private readonly Activity _context;
         private readonly List<Item> _items;
+        private readonly String _newKey;
 
-        public ButtonAdapter(Activity context, List<Item> items) : base()
+        
+        public ButtonAdapter(Activity context, List<Item> items, String newKey) : base()
         {
             _context = context;
             _items = items;
+            _newKey = newKey;
         }
 
         public override long GetItemId(int position)
@@ -47,7 +51,7 @@ namespace ListManager.Adapters
 
                     Button btnDelete = convertView.FindViewById<Button>(Resource.Id.btnDelete);
                     btnDelete.Tag = name;
-                    btnDelete.SetOnClickListener(new ButtonClickListener(this._context));
+                    btnDelete.SetOnClickListener(new ButtonClickListener(this._context, this._newKey));
 
                 }
                 else
@@ -66,27 +70,33 @@ namespace ListManager.Adapters
         private class ButtonClickListener : Java.Lang.Object, View.IOnClickListener
         {
             private Activity activity;
+            private String newKey;
 
-            public ButtonClickListener(Activity activity)
+            public ButtonClickListener(Activity activity, String newKey)
             {
                 this.activity = activity;
+                this.newKey = newKey;
             }
 
             public void OnClick(View v)
             {
-                  /*          
-                 String rowDeleteName = (String)v.Tag;
-                 String listNames = Preferences.getString(this.activity, Preferences.getLists());
-                 //Remplace the name for "".
-                 listNames = listNames.Replace(rowDeleteName, "");
-                 // Structure of the string --> name|name|name|name|name ...
-                 listNames = listNames.Replace("||", "|");
-                 listNames = listNames.TrimEnd('|');   //Remove | to end String 
-                 listNames = listNames.TrimStart('|'); // Remove | to start string
-                 Preferences.setString(this.activity, Preferences.getLists(), listNames);
-                 Intent Init = new Intent(this.activity, typeof(ListManager.Controller.Init));
-                 this.activity.StartActivity(Init);
-                 */
+
+                String rowDeleteName = (String)v.Tag;
+                String itemsList = Preferences.getString(this.activity, this.newKey);
+                var bundle = new Bundle();
+
+                //Remplace the name for "".
+                itemsList = itemsList.Replace(rowDeleteName, "");
+                // Structure of the string --> name|name|name|name|name ...
+                itemsList = itemsList.Replace("||", "|");
+                itemsList = itemsList.TrimEnd('|');   //Remove | to end String 
+                itemsList = itemsList.TrimStart('|'); // Remove | to start string
+                Preferences.setString(this.activity, this.newKey, itemsList);              
+                Intent modify = new Intent(this.activity, typeof(ModifyList));
+                bundle.PutString("key", this.newKey);
+                modify.PutExtras(bundle);
+                this.activity.StartActivity(modify);
+                 
             }
         }
 

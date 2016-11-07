@@ -18,7 +18,7 @@ namespace ListManager.Model
     class CustomDialog
     {
         public static string title = "Confirmación de acción";
-        public static Resource.Layout view;
+        //public static Resource.Layout view;
         public static bool cancellable = true;
         public bool result { get; set; }
         public Button yesBtn;

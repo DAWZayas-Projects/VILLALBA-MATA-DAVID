@@ -20,6 +20,8 @@ namespace ListManager.Controller
     [Activity(Label = "ModifyList")]
     public class ModifyList : Activity
     {
+
+
         ListView myListView;
         Button btnSave;
         Button btnEmptyList;
@@ -28,8 +30,7 @@ namespace ListManager.Controller
         EditText addElement;
         CustomDialog customDialog;
         Boolean bl;
-
-
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -40,6 +41,11 @@ namespace ListManager.Controller
             myListView = FindViewById<ListView>(Resource.Id.listViewButton);
             btnEmptyList = FindViewById<Button>(Resource.Id.btnEmptyList);
             btnBack = FindViewById<Button>(Resource.Id.back);
+
+            if (this.Intent.Extras != null)
+            {
+                newKey = this.Intent.Extras.GetString("key");
+            }
 
             btnSave.Click += btnSave_Click;
             btnEmptyList.Click += btnEmptyList_Click;
@@ -58,17 +64,16 @@ namespace ListManager.Controller
             String itemsList = Preferences.getString(this, newKey);         
             ArrayList lists = new ArrayList();
            
-            lists.AddRange(itemsList.Split('|'));
-            
+            lists.AddRange(itemsList.Split('|'));         
             List<Item> listItems = new List<Item>();
 
             foreach (String str in lists)
             {
                 listItems.Add(new Item { NameItem = str});
-
+                bl = true;
             }
 
-            myListView.Adapter = new ButtonAdapter(this, listItems);
+            myListView.Adapter = new ButtonAdapter(this, listItems, newKey);
             
         }
 
@@ -98,10 +103,9 @@ namespace ListManager.Controller
 
             if (!bl)
             {
-                Toast.MakeText(this, "This list  " + element + "does not exist", ToastLength.Long).Show();
+                Toast.MakeText(this, "This list  " + element + " does not exist", ToastLength.Long).Show();
                 newKey = "";
-            }
-            //Accedo a las listas
+            }     
 
             ArrayList lists = new ArrayList();
 
@@ -115,20 +119,17 @@ namespace ListManager.Controller
             if (!itemsList.Contains(element))
             {
                 lists.Add(element);
-            }
-            else
-            {
+            } else {
                 Toast.MakeText(this, "already exist name " + element, ToastLength.Long).Show();
                 OnResume();
-
             }
 
             conversion = ConversionToString(lists);
             if (newKey != element && bl == true)
             {
-                Preferences.setString(this, newKey, conversion);
-                
+                Preferences.setString(this, newKey, conversion);              
             }
+
             OnResume();
             addElement.Text = "";
         }
@@ -156,23 +157,7 @@ namespace ListManager.Controller
 
             return listNames;
         }
-
-       /* public Boolean ExistList(ArrayList array, String name)
-        {
-            int exist;
-
-            exist = array.IndexOf(name);
-
-            if (exist >= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }*/
-
+   
         private void btnEmptyList_Click(object sender, EventArgs e)
         {      
             customDialog = new CustomDialog(this);

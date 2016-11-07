@@ -26,8 +26,6 @@ namespace ListManager.Controller
         Button btnBack;
         Button btnEmptyList;
         EditText addElement;
-        
-        Boolean rep = false;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -51,49 +49,36 @@ namespace ListManager.Controller
 
         protected override void OnResume()
         {
-            base.OnResume();
-            if (rep == true)
-            {
-                viewList();
-            }
+            base.OnResume();                     
         }
-         public void viewList()
-        {
-           
-            List<Item> listItems = new List<Item>();                          
-            listItems.Add(new Item { NameItem = addElement.Text });
-            string[] arrayString = listItems.Select(x => x.NameItem).ToArray();
-            ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arrayString);
-
-        }
-
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Finish();
-           
+            Finish();        
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             //vars               
-            String conversion;        
-  
-            //Accedo a las listas
-            String listNames = Preferences.getString(this, Preferences.getLists());
+            String conversion;
+            String element = addElement.Text.ToLower();
             ArrayList lists = new ArrayList();
 
+            //Accedo a las listas
+            String listNames = Preferences.getString(this, Preferences.getLists());
+           
             if (listNames != "")
             {
                 lists.AddRange(listNames.Split('|'));
             }
 
             //Compruebo si existe el nombre. Si no existe el nombre los guardamos.
-            String element = addElement.Text.ToLower();            
+                     
 
             if (!listNames.Contains(element))
             {             
                 lists.Add(element);
+                Toast.MakeText(this, "Save list " + element, ToastLength.Long).Show();
             }
             else
             {
@@ -103,9 +88,7 @@ namespace ListManager.Controller
             }
 
             conversion = ConversionToString(lists);
-
             Preferences.setString(this, Preferences.getLists(), conversion);
-
             addElement.Text = "";
         }
 
@@ -121,36 +104,6 @@ namespace ListManager.Controller
             listNames = listNames.TrimEnd('|');
 
             return listNames;
-        }
-
-       /* public Boolean ExistList(ArrayList array, String name)
-        {
-            int exist;
-
-            exist = array.IndexOf(name);
-
-            if (exist >= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }*/
-     
-
-        protected override void OnListItemClick(ListView l, View v, int position, long id)
-        {
-            Intent viewList = new Intent(this, typeof(ViewList));
-            StartActivity(viewList);
-        }
-
-        private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
-        {
-
-           
-
-        }
+        }      
     }
 }
