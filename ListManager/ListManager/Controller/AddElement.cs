@@ -26,6 +26,7 @@ namespace ListManager.Controller
         Button btnBack;
         Button btnEmptyList;
         EditText addElement;
+        LinearLayout action;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -36,13 +37,15 @@ namespace ListManager.Controller
             btnSave = FindViewById<Button>(Resource.Id.save);
             addElement = FindViewById<EditText>(Resource.Id.addElement);
             btnBack = FindViewById<Button>(Resource.Id.back);
-            btnEmptyList = FindViewById<Button>(Resource.Id.btnEmptyList);     
+            btnEmptyList = FindViewById<Button>(Resource.Id.btnEmptyList);
+            action = FindViewById<LinearLayout>(Resource.Id.linearLayoutAction);
 
 
             btnSave.Click += btnSave_Click;
             btnBack.Click += btnBack_Click;
 
             btnEmptyList.Visibility = ViewStates.Invisible;
+            action.Visibility = ViewStates.Gone;
 
         }
 

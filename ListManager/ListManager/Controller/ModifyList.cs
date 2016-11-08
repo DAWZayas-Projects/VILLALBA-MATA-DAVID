@@ -30,7 +30,9 @@ namespace ListManager.Controller
         EditText addElement;
         CustomDialog customDialog;
         Boolean bl;
-        
+        TextView action;
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -41,21 +43,33 @@ namespace ListManager.Controller
             myListView = FindViewById<ListView>(Resource.Id.listViewButton);
             btnEmptyList = FindViewById<Button>(Resource.Id.btnEmptyList);
             btnBack = FindViewById<Button>(Resource.Id.back);
-
-            if (this.Intent.Extras != null)
-            {
-                newKey = this.Intent.Extras.GetString("key");
-            }
+            action = FindViewById<TextView>(Resource.Id.actionManager);
 
             btnSave.Click += btnSave_Click;
             btnEmptyList.Click += btnEmptyList_Click;
             btnBack.Click += btnBack_Click;
-       
+
         }
 
         protected override void OnResume()
         {
             base.OnResume();
+
+            if (this.Intent.Extras != null)
+            {
+                newKey = this.Intent.Extras.GetString("key");             
+            }
+
+            if (newKey == "")
+            {
+                action.Text = " What list do you want to modify?";              
+            }
+            else
+            {
+                action.Text = " You are modify " + newKey;
+                addElement.Hint = "Add element";
+            }
+
             viewList();       
         }
 

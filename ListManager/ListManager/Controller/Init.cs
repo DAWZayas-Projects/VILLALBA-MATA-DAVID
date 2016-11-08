@@ -57,7 +57,7 @@ namespace ListManager.Controller
 
         public void informationActionsItemList()
         {
-            String listNames = Preferences.getString(this, Preferences.getLists());         
+            String listNames = Preferences.getString(this, Preferences.getLists());
             if(listNames == "")
             {
                 textInfoItemlist.Visibility = ViewStates.Invisible;
