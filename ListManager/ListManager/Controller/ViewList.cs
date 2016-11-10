@@ -9,16 +9,53 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.Collections;
+using ListManager.Models;
+using ListManager.Adapters;
 
 namespace ListManager.Controller
 {
     [Activity(Label = "ViewList")]
-    public class ViewList : Activity
+    public class ViewList : ListActivity
     {
+
+        String list;
+        ListView myListView;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ViewList);
+
+          
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            if (this.Intent.Extras != null)
+            {
+                list = this.Intent.Extras.GetString("key");
+            }
+      
+            viewList();
+        }
+
+        public void viewList()
+        {
+            String itemsList = Preferences.getString(this, list);
+            ArrayList lists = new ArrayList();
+
+            lists.AddRange(itemsList.Split('|'));
+            List<Item> listItems = new List<Item>();
+
+            foreach (String str in lists)
+            {
+                listItems.Add(new Item { NameItem = str });          
+            }
+
+           // myListView.Adapter = new ButtonAdapter(this, listItems);
+
         }
     }
 }

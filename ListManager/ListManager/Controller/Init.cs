@@ -102,6 +102,17 @@ namespace ListManager.Controller
                 customDialog = new CustomDialog(this);
                 customDialog.yesBtn.Click += delegate
                 {
+
+                    ArrayList lists = new ArrayList();
+
+                    lists.AddRange(listNames.Split('|'));          
+
+                    foreach (String str in lists)
+                    {
+                        Preferences.setString(this, str, "");
+
+                    }
+
                     Preferences.setString(this, Preferences.getLists(), "");
                     OnResume();
                 };
@@ -112,12 +123,19 @@ namespace ListManager.Controller
         {
             Intent modifyList = new Intent(this, typeof(ModifyList));
             StartActivity(modifyList);
-}
+
+        }
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)
         {
+
+            var bundle = new Bundle();
+
             Intent viewList = new Intent(this, typeof(ViewList));
+            bundle.PutString("key", position.ToString());
+            viewList.PutExtras(bundle);
             StartActivity(viewList);
+
         }
 
         private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
@@ -128,6 +146,8 @@ namespace ListManager.Controller
 
             {
                 string rowDeleteName = (string)this.ListAdapter.GetItem(e.Position);
+
+                Preferences.setString(this, rowDeleteName, "");
                 String listNames = Preferences.getString(this, Preferences.getLists());
 
                 //Remplace the name for "".
