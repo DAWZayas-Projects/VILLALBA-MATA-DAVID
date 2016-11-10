@@ -26,8 +26,7 @@ namespace ListManager.Controller
         Button btnModifyList;
         LinearLayout textInfoItemlist;
         CustomDialog customDialog;
-        
-
+    
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

@@ -93,8 +93,8 @@ namespace ListManager.Controller
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Finish();
-
+            Intent init = new Intent(this, typeof(Init));
+            StartActivity(init);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
