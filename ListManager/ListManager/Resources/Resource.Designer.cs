@@ -51,7 +51,10 @@ namespace ListManager
 			public const int Icon = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int splash_logo = 2130837506;
+			public const int listManager = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int splash_logo = 2130837507;
 			
 			static Drawable()
 			{
@@ -66,8 +69,8 @@ namespace ListManager
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060017
-			public const int NameSimpleRow = 2131099671;
+			// aapt resource value: 0x7f060019
+			public const int NameSimpleRow = 2131099673;
 			
 			// aapt resource value: 0x7f060003
 			public const int actionManager = 2131099651;
@@ -78,14 +81,17 @@ namespace ListManager
 			// aapt resource value: 0x7f06000b
 			public const int back = 2131099659;
 			
-			// aapt resource value: 0x7f06001a
-			public const int btnDelete = 2131099674;
+			// aapt resource value: 0x7f06001c
+			public const int btnDelete = 2131099676;
 			
 			// aapt resource value: 0x7f06000c
 			public const int btnEmptyList = 2131099660;
 			
-			// aapt resource value: 0x7f060015
-			public const int deleteAllElements = 2131099669;
+			// aapt resource value: 0x7f060023
+			public const int btnModify = 2131099683;
+			
+			// aapt resource value: 0x7f060017
+			public const int deleteAllElements = 2131099671;
 			
 			// aapt resource value: 0x7f060000
 			public const int linearLayout1 = 2131099648;
@@ -96,41 +102,59 @@ namespace ListManager
 			// aapt resource value: 0x7f060002
 			public const int linearLayout4 = 2131099650;
 			
+			// aapt resource value: 0x7f060011
+			public const int linearLayout5 = 2131099665;
+			
+			// aapt resource value: 0x7f060014
+			public const int linearLayout6 = 2131099668;
+			
 			// aapt resource value: 0x7f060001
 			public const int linearLayoutAction = 2131099649;
+			
+			// aapt resource value: 0x7f060024
+			public const int linearLayoutBody = 2131099684;
 			
 			// aapt resource value: 0x7f060009
 			public const int linearLayoutBottom = 2131099657;
 			
-			// aapt resource value: 0x7f060014
-			public const int linearLayoutBotton = 2131099668;
+			// aapt resource value: 0x7f060016
+			public const int linearLayoutBotton = 2131099670;
 			
-			// aapt resource value: 0x7f06000d
-			public const int linearLayoutButtonAdd = 2131099661;
+			// aapt resource value: 0x7f060022
+			public const int linearLayoutButton = 2131099682;
 			
-			// aapt resource value: 0x7f060011
-			public const int linearLayoutButtonModify = 2131099665;
+			// aapt resource value: 0x7f06000f
+			public const int linearLayoutButtonAdd = 2131099663;
+			
+			// aapt resource value: 0x7f060012
+			public const int linearLayoutButtonModify = 2131099666;
 			
 			// aapt resource value: 0x7f060007
 			public const int linearLayoutCenter = 2131099655;
 			
-			// aapt resource value: 0x7f06000f
-			public const int linearLayoutInfo = 2131099663;
+			// aapt resource value: 0x7f06001f
+			public const int linearLayoutHead = 2131099679;
 			
-			// aapt resource value: 0x7f060019
-			public const int linearLayoutLeft = 2131099673;
-			
-			// aapt resource value: 0x7f060013
-			public const int linearLayoutMid = 2131099667;
+			// aapt resource value: 0x7f06000d
+			public const int linearLayoutInfo = 2131099661;
 			
 			// aapt resource value: 0x7f06001b
-			public const int linearLayoutRight = 2131099675;
+			public const int linearLayoutLeft = 2131099675;
+			
+			// aapt resource value: 0x7f060015
+			public const int linearLayoutMid = 2131099669;
+			
+			// aapt resource value: 0x7f06001d
+			public const int linearLayoutRight = 2131099677;
+			
+			// aapt resource value: 0x7f06001a
+			public const int linearLayoutRow = 2131099674;
 			
 			// aapt resource value: 0x7f060018
-			public const int linearLayoutRow = 2131099672;
+			public const int linearLayoutSimpleRow = 2131099672;
 			
-			// aapt resource value: 0x7f060016
-			public const int linearLayoutSimpleRow = 2131099670;
+			// aapt resource value: 0x7f060020
+			public const int linearLayoutTitleList = 2131099680;
 			
 			// aapt resource value: 0x7f060005
 			public const int linearLayoutTop = 2131099653;
@@ -138,20 +162,23 @@ namespace ListManager
 			// aapt resource value: 0x7f060008
 			public const int listViewButton = 2131099656;
 			
-			// aapt resource value: 0x7f060012
-			public const int modifyList = 2131099666;
+			// aapt resource value: 0x7f060013
+			public const int modifyList = 2131099667;
 			
-			// aapt resource value: 0x7f06000e
-			public const int newList = 2131099662;
+			// aapt resource value: 0x7f060010
+			public const int newList = 2131099664;
 			
 			// aapt resource value: 0x7f06000a
 			public const int save = 2131099658;
 			
-			// aapt resource value: 0x7f060010
-			public const int textInfoActions = 2131099664;
+			// aapt resource value: 0x7f06000e
+			public const int textInfoActions = 2131099662;
 			
-			// aapt resource value: 0x7f06001c
-			public const int tvViewRow = 2131099676;
+			// aapt resource value: 0x7f06001e
+			public const int tvViewRow = 2131099678;
+			
+			// aapt resource value: 0x7f060021
+			public const int view_list = 2131099681;
 			
 			static Id()
 			{

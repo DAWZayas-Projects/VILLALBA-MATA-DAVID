@@ -17,7 +17,7 @@ using ListManager.Model;
 
 namespace ListManager.Controller
 {
-    [Activity(Label = "ModifyList")]
+    [Activity(Label = "ListManager")]
     public class ModifyList : Activity
     {
 
@@ -31,7 +31,7 @@ namespace ListManager.Controller
         CustomDialog customDialog;
         Boolean bl;
         TextView action;
-
+        
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -48,7 +48,7 @@ namespace ListManager.Controller
             btnSave.Click += btnSave_Click;
             btnEmptyList.Click += btnEmptyList_Click;
             btnBack.Click += btnBack_Click;
-
+        
         }
 
         protected override void OnResume()
@@ -62,7 +62,8 @@ namespace ListManager.Controller
 
             if (newKey == "")
             {
-                action.Text = " What list do you want to modify?";              
+                action.Text = " What list do you want to modify?";
+                              
             }
             else
             {

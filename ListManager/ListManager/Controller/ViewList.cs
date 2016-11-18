@@ -15,33 +15,28 @@ using ListManager.Adapters;
 
 namespace ListManager.Controller
 {
-    [Activity(Label = "ViewList")]
-    public class ViewList : ListActivity
+    [Activity(Label = "ListManager")]
+    public class ViewList : Activity
     {
 
-        String list;
-        ListView myListView;
+       
+       // ListView myListView;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ViewList);
 
-          
+
         }
 
         protected override void OnResume()
         {
             base.OnResume();
-
-            if (this.Intent.Extras != null)
-            {
-                list = this.Intent.Extras.GetString("key");
-            }
       
-            viewList();
+            //viewList();
         }
 
-        public void viewList()
+       /* public void viewList()
         {
             String itemsList = Preferences.getString(this, list);
             ArrayList lists = new ArrayList();
@@ -56,6 +51,6 @@ namespace ListManager.Controller
 
            // myListView.Adapter = new ButtonAdapter(this, listItems);
 
-        }
+        }*/
     }
 }

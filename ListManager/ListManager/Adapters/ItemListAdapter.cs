@@ -91,12 +91,13 @@ namespace ListManager.Adapters
                 itemsList = itemsList.Replace("||", "|");
                 itemsList = itemsList.TrimEnd('|');   //Remove | to end String 
                 itemsList = itemsList.TrimStart('|'); // Remove | to start string
-                Preferences.setString(this.activity, this.newKey, itemsList);              
+                Preferences.setString(this.activity, this.newKey, itemsList);
                 Intent modify = new Intent(this.activity, typeof(ModifyList));
                 bundle.PutString("key", this.newKey);
                 modify.PutExtras(bundle);
                 this.activity.StartActivity(modify);
-                 
+
+
             }
         }
 

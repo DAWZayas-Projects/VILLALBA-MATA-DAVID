@@ -18,7 +18,7 @@ using ListManager.Adapters;
 
 namespace ListManager.Controller
 {
-    [Activity(Label = "NewList")]
+    [Activity(Label = "ListManager")]
     public class AddElement : ListActivity
     {
         //vars
@@ -27,6 +27,7 @@ namespace ListManager.Controller
         Button btnEmptyList;
         EditText addElement;
         LinearLayout action;
+       
 
         protected override void OnCreate(Bundle bundle)
         {

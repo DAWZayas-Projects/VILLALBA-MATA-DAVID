@@ -7,6 +7,34 @@
     android:id="@+id/linearLayout1">
     <LinearLayout
         android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/linearLayoutInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2F5A9"
+        android:layout_weight="4">
+        <TextView
+            android:text="texto explicativo funcionamiento lsits"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textInfoActions"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textStyle="italic"
+            android:textSize="20dp"
+            android:textColor="@android:color/holo_orange_dark" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark" />
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/linearLayoutTop"
@@ -15,6 +43,14 @@
         android:minHeight="25px"
         android:gravity="right">
         <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <LinearLayout
             android:orientation="vertical"
             android:minWidth="25px"
             android:minHeight="25px"
@@ -22,7 +58,7 @@
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_weight="1">
             <Button
                 android:id="@+id/newList"
                 android:background="@android:drawable/ic_input_add"
@@ -31,22 +67,13 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:minWidth="25px"
             android:minHeight="25px"
+            android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/linearLayoutInfo"
-            android:layout_weight="1">
-            <TextView
-                android:text="texto explicativo funcionamiento lsits"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/textInfoActions"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center" />
-        </LinearLayout>
+            android:layout_weight="1" />
         <LinearLayout
             android:orientation="vertical"
             android:minWidth="25px"
@@ -55,7 +82,7 @@
             android:layout_height="match_parent"
             android:id="@+id/linearLayoutButtonModify"
             android:gravity="center_vertical"
-            android:layout_weight="5">
+            android:layout_weight="1">
             <Button
                 android:id="@+id/modifyList"
                 android:background="@android:drawable/ic_menu_edit"
@@ -63,6 +90,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -84,8 +119,9 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayoutBotton">
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayoutBotton"
+        android:layout_weight="4">
         <Button
             android:text="Delete all elements"
             android:id="@+id/deleteAllElements"

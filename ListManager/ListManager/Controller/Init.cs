@@ -17,14 +17,14 @@ using ListManager.Model;
 
 namespace ListManager.Controller
 {
-    [Activity(Label = "Init")]
+    [Activity(Label = "ListManager")]
     public class Init : ListActivity
     {
 
         Button btnNewList;
         Button btnDeleteAllElelements;
         Button btnModifyList;
-        LinearLayout textInfoItemlist;
+        TextView textInfoItemlist;
         CustomDialog customDialog;
     
 
@@ -36,14 +36,14 @@ namespace ListManager.Controller
             btnNewList             = FindViewById<Button>      (Resource.Id.newList);
             btnDeleteAllElelements = FindViewById<Button>      (Resource.Id.deleteAllElements);
             btnModifyList          = FindViewById<Button>      (Resource.Id.modifyList);
-            textInfoItemlist       = FindViewById<LinearLayout>(Resource.Id.linearLayoutInfo);
+            textInfoItemlist       = FindViewById<TextView>    (Resource.Id.textInfoActions);
 
 
 
             btnNewList.Click             += btnNewList_Click;
             btnDeleteAllElelements.Click += btnDeleteAllElelements_Click;
             btnModifyList.Click          += btnModifyList_Click;
-            ListView.ItemLongClick       += ListView_ItemLongClick;
+            ListView.ItemLongClick       += delete_Item_ItemLongClick;
         }
   
 
@@ -132,13 +132,13 @@ namespace ListManager.Controller
             var bundle = new Bundle();
 
             Intent viewList = new Intent(this, typeof(ViewList));
-            bundle.PutString("key", position.ToString());
-            viewList.PutExtras(bundle);
+           // bundle.PutString("key", position.ToString());
+            //viewList.PutExtras(bundle);
             StartActivity(viewList);
 
         }
 
-        private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        private void delete_Item_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
 
             customDialog = new CustomDialog(this);     
