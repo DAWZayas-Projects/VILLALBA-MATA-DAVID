@@ -15,7 +15,7 @@ using ListManager.Adapters;
 
 namespace ListManager.Controller
 {
-    [Activity(Label = "ListManager")]
+    [Activity(Label = "List Manager")]
     public class ViewList : Activity
     {
 

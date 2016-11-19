@@ -24,18 +24,18 @@
             android:id="@+id/linearLayout4"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:background="#F2F5A9">
             <TextView
-                android:text="Estas modificando la lista de videojuegos de ordenador"
+                android:text="Estas modificando la lista"
                 android:id="@+id/actionManager"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 android:typeface="serif"
-                android:drawableLeft="@drawable/alert_top"
-                android:drawableRight="@drawable/alert_top"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textColor="@android:color/holo_orange_dark" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/linearLayout3"
-            android:background="@android:color/background_dark"
+            android:background="@android:color/holo_orange_dark"
             android:layout_weight="7" />
     </LinearLayout>
     <LinearLayout

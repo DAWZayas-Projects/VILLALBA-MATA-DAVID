@@ -13,7 +13,7 @@ using System.Threading;
 namespace ListManager
 {
 
-    [Activity(Label = "SplashScreen", MainLauncher = true, NoHistory = true, Theme = "@style/Theme.SplashActivity")]
+    [Activity(Label = "List Manager", MainLauncher = true, NoHistory = true, Theme = "@style/Theme.SplashActivity")]
     public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)

@@ -17,7 +17,7 @@ using ListManager.Model;
 
 namespace ListManager.Controller
 {
-    [Activity(Label = "ListManager")]
+    [Activity(Label = "List Manager")]
     public class ModifyList : Activity
     {
 

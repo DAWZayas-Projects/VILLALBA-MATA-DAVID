@@ -28,6 +28,7 @@ namespace ListManager.Model
         {
             var builder = new AlertDialog.Builder(context);
             builder.SetTitle(title);
+            builder.SetIcon(Resource.Drawable.papelera_icono);
 
             //Seteo los botones
             builder.SetPositiveButton("Si", (EventHandler<DialogClickEventArgs>)null);

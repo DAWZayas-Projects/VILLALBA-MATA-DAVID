@@ -54,7 +54,10 @@ namespace ListManager
 			public const int listManager = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int splash_logo = 2130837507;
+			public const int papelera_icono = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int splash_logo = 2130837508;
 			
 			static Drawable()
 			{
