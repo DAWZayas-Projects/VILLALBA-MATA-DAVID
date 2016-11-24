@@ -96,27 +96,29 @@ namespace ListManager.Controller
 
         private void btnDeleteAllElelements_Click(object sender, EventArgs e)
         {
-            String listNames = Preferences.getString(this, Preferences.getLists());
-            if (listNames != "")
-            {
-                customDialog = new CustomDialog(this);
-                customDialog.yesBtn.Click += delegate
-                {
+             String listNames = Preferences.getString(this, Preferences.getLists());
+             if (listNames != "")
+             {
+                 customDialog = new CustomDialog(this);
+                 customDialog.yesBtn.Click += delegate
+                 {
 
-                    ArrayList lists = new ArrayList();
+                     ArrayList lists = new ArrayList();
 
-                    lists.AddRange(listNames.Split('|'));          
+                     lists.AddRange(listNames.Split('|'));          
 
-                    foreach (String str in lists)
-                    {
-                        Preferences.setString(this, str, "");
+                     foreach (String str in lists)
+                     {
+                         Preferences.setString(this, str, "");
 
-                    }
+                     }
 
-                    Preferences.setString(this, Preferences.getLists(), "");
-                    OnResume();
-                };
-            }                             
+                     Preferences.setString(this, Preferences.getLists(), "");
+                     OnResume();
+                 };
+             }
+
+             
         }
 
         private void btnModifyList_Click(object sender, EventArgs e)
