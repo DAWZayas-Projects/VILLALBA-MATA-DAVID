@@ -49,7 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\ItemListAdapter.cs" />
+    <Compile Include="Adapters\ListButtonAdapter.cs" />
+    <Compile Include="Adapters\ListAdapter.cs" />
     <Compile Include="Controller\Init.cs" />
     <Compile Include="Controller\ModifyList.cs" />
     <Compile Include="Controller\AddElement.cs" />

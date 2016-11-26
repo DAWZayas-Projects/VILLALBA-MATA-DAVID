@@ -31,14 +31,14 @@ namespace ListManager.Controller
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            //Load corresponding view
             SetContentView(Resource.Layout.Init);
 
-            btnNewList             = FindViewById<Button>      (Resource.Id.newList);
+            //Create a pointer with the ID to the corresponding element of the view
+            btnNewList = FindViewById<Button>      (Resource.Id.newList);
             btnDeleteAllElelements = FindViewById<Button>      (Resource.Id.deleteAllElements);
             btnModifyList          = FindViewById<Button>      (Resource.Id.modifyList);
             textInfoItemlist       = FindViewById<TextView>    (Resource.Id.textInfoActions);
-
-
 
             btnNewList.Click             += btnNewList_Click;
             btnDeleteAllElelements.Click += btnDeleteAllElelements_Click;
@@ -54,6 +54,7 @@ namespace ListManager.Controller
             informationActionsItemList();
         }
 
+        //Get the informative text if there is any element.
         public void informationActionsItemList()
         {
             String listNames = Preferences.getString(this, Preferences.getLists());
@@ -68,21 +69,27 @@ namespace ListManager.Controller
 
         public void viewList()
         {
-
+            // Structure of the string --> name|name|name|name|name ...
             String listNames = Preferences.getString(this, Preferences.getLists());
+            //Create an arrayList and add the string separated by the |.
             ArrayList lists = new ArrayList();
-
             lists.AddRange(listNames.Split('|'));
-
+            //create a list of items.
             List<Item> listItems = new List<Item>();
 
             foreach (String str in lists)
             {
-                listItems.Add(new Item { NameItem = str });
+                //Get the number of items from a list.
+                String itemsList = Preferences.getString(this, str);
+                ArrayList Quantity = new ArrayList();
+                Quantity.AddRange(itemsList.Split('|'));
+
+                //Add item to the list.
+                listItems.Add(new Item { NameItem = str, Quantity= Quantity.Count.ToString() });
 
             }
-
-            string[] arrayString = listItems.Select(x => x.NameItem).ToArray();
+            //Display the list with the adapter (SimpleListItem1)
+            string[] arrayString = listItems.Select(x => x.NameItem+" "+"("+x.Quantity+")").ToArray();
             ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arrayString);
             
           
@@ -104,7 +111,6 @@ namespace ListManager.Controller
                  {
 
                      ArrayList lists = new ArrayList();
-
                      lists.AddRange(listNames.Split('|'));          
 
                      foreach (String str in lists)
@@ -130,12 +136,16 @@ namespace ListManager.Controller
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)
         {
-
+            String listNames = Preferences.getString(this, Preferences.getLists());
+            ArrayList lists = new ArrayList();
+            lists.AddRange(listNames.Split('|'));
+            //Get the list according to the position of the clicked element.
+            String keyList = lists[position].ToString();
             var bundle = new Bundle();
-
             Intent viewList = new Intent(this, typeof(ViewList));
-           // bundle.PutString("key", position.ToString());
-            //viewList.PutExtras(bundle);
+            //Send the name of the list that will be the key to visualize.
+            bundle.PutString("key", keyList);
+            viewList.PutExtras(bundle);
             StartActivity(viewList);
 
         }

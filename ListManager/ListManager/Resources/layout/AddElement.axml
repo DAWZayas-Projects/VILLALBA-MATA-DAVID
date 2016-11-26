@@ -72,9 +72,11 @@
             android:layout_height="match_parent"
             android:id="@+id/listViewButton" />
         <ListView
-            android:id="@+id/android:list"
+            android:minWidth="25px"
+            android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:id="@+id/android:list"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"

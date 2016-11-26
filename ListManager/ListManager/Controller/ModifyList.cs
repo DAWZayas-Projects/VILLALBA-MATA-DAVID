@@ -64,9 +64,7 @@ namespace ListManager.Controller
             {
                 action.Text = " What list do you want to modify?";
                               
-            }
-            else
-            {
+            } else {
                 action.Text = " You are modify " + newKey;
                 addElement.Hint = "Add element";
             }

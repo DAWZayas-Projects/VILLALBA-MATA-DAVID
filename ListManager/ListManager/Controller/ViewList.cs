@@ -19,12 +19,17 @@ namespace ListManager.Controller
     public class ViewList : Activity
     {
 
-       
-       // ListView myListView;
+
+        ListView simpleList;
+        String key = "";
+        TextView nameList;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ViewList);
+
+            simpleList = FindViewById<ListView>(Resource.Id.simpleListView);
+            nameList = FindViewById<TextView>(Resource.Id.view_list);
 
 
         }
@@ -32,13 +37,19 @@ namespace ListManager.Controller
         protected override void OnResume()
         {
             base.OnResume();
-      
-            //viewList();
+
+            if (this.Intent.Extras != null)
+            {
+                key = this.Intent.Extras.GetString("key");
+                nameList.Text = key;
+            }
+
+            viewList();
         }
 
-       /* public void viewList()
+        public void viewList()
         {
-            String itemsList = Preferences.getString(this, list);
+            String itemsList = Preferences.getString(this, key);
             ArrayList lists = new ArrayList();
 
             lists.AddRange(itemsList.Split('|'));
@@ -49,8 +60,9 @@ namespace ListManager.Controller
                 listItems.Add(new Item { NameItem = str });          
             }
 
-           // myListView.Adapter = new ButtonAdapter(this, listItems);
+            simpleList.Adapter = new ListAdapter(this, listItems);
+        
 
-        }*/
+        }
     }
 }

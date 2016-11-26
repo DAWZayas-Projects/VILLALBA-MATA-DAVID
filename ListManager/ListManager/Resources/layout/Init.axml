@@ -15,14 +15,14 @@
         android:background="#F2F5A9"
         android:layout_weight="4">
         <TextView
-            android:text="texto explicativo funcionamiento lsits"
+            android:text="Click element for view list. Long click for delete element"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textInfoActions"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textStyle="italic"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textColor="@android:color/holo_orange_dark" />
     </LinearLayout>
     <LinearLayout

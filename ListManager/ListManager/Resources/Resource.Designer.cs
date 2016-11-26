@@ -72,9 +72,6 @@ namespace ListManager
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060019
-			public const int ItemList = 2131099673;
-			
 			// aapt resource value: 0x7f06001b
 			public const int NameSimpleRow = 2131099675;
 			
@@ -98,6 +95,9 @@ namespace ListManager
 			
 			// aapt resource value: 0x7f060017
 			public const int deleteAllElements = 2131099671;
+			
+			// aapt resource value: 0x7f060019
+			public const int itemList = 2131099673;
 			
 			// aapt resource value: 0x7f060000
 			public const int linearLayout1 = 2131099648;
@@ -176,6 +176,9 @@ namespace ListManager
 			
 			// aapt resource value: 0x7f06000a
 			public const int save = 2131099658;
+			
+			// aapt resource value: 0x7f060026
+			public const int simpleListView = 2131099686;
 			
 			// aapt resource value: 0x7f06000e
 			public const int textInfoActions = 2131099662;
