@@ -70,7 +70,8 @@ namespace ListManager.Controller
         public void viewList()
         {
             // Structure of the string --> name|name|name|name|name ...
-            String listNames = Preferences.getString(this, Preferences.getLists());
+            String listNames = Preferences.getString(this, Preferences.getLists());            
+
             //Create an arrayList and add the string separated by the |.
             ArrayList lists = new ArrayList();
             lists.AddRange(listNames.Split('|'));
@@ -79,18 +80,32 @@ namespace ListManager.Controller
 
             foreach (String str in lists)
             {
+             
                 //Get the number of items from a list.
                 String itemsList = Preferences.getString(this, str);
-                ArrayList Quantity = new ArrayList();
-                Quantity.AddRange(itemsList.Split('|'));
+                if(itemsList != "")
+                {
+                    ArrayList Quantity = new ArrayList();
+                    Quantity.AddRange(itemsList.Split('|'));
+                    listItems.Add(new Item { NameItem = str, Quantity = Quantity.Count.ToString()});
+                }else
+                {
+                    //Add item to the list.
+                    listItems.Add(new Item { NameItem = str, Quantity = "0"});
+                }
+                
 
-                //Add item to the list.
-                listItems.Add(new Item { NameItem = str, Quantity= Quantity.Count.ToString() });
+                
+                
+                
 
             }
             //Display the list with the adapter (SimpleListItem1)
-            string[] arrayString = listItems.Select(x => x.NameItem+" "+"("+x.Quantity+")").ToArray();
+            string[] arrayString = listNames != "" ? listItems.Select(x => x.NameItem+" "+"("+x.Quantity+")").ToArray(): listItems.Select(x =>"").ToArray();
+          
             ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arrayString);
+           
+            
             
           
         }
@@ -158,9 +173,21 @@ namespace ListManager.Controller
 
             {
                 string rowDeleteName = (string)this.ListAdapter.GetItem(e.Position);
-
                 Preferences.setString(this, rowDeleteName, "");
                 String listNames = Preferences.getString(this, Preferences.getLists());
+
+                //Delete quantity to element.
+                ArrayList itemDelete = new ArrayList();
+                itemDelete.AddRange(rowDeleteName.Split(' '));
+                itemDelete.RemoveAt(itemDelete.Count -1);
+                rowDeleteName = "";
+                foreach( String str in itemDelete)
+                {
+                    
+                    rowDeleteName = rowDeleteName +" "+ str;
+
+                }
+                rowDeleteName = rowDeleteName.TrimStart(' ');
 
                 //Remplace the name for "".
                 listNames = listNames.Replace(rowDeleteName, "");

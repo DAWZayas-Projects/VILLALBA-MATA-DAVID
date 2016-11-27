@@ -50,19 +50,21 @@ namespace ListManager.Controller
         public void viewList()
         {
             String itemsList = Preferences.getString(this, key);
-            ArrayList lists = new ArrayList();
-
-            lists.AddRange(itemsList.Split('|'));
-            List<Item> listItems = new List<Item>();
-
-            foreach (String str in lists)
+            if(itemsList != "")
             {
-                listItems.Add(new Item { NameItem = str });          
+                ArrayList lists = new ArrayList();
+
+                lists.AddRange(itemsList.Split('|'));
+                List<Item> listItems = new List<Item>();
+
+                foreach (String str in lists)
+                {
+                    listItems.Add(new Item { NameItem = str });
+                }
+
+                simpleList.Adapter = new ListAdapter(this, listItems);
             }
-
-            simpleList.Adapter = new ListAdapter(this, listItems);
-        
-
+ 
         }
     }
 }
