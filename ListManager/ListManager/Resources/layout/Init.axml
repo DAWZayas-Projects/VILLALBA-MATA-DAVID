@@ -85,7 +85,7 @@
             android:layout_weight="1">
             <Button
                 android:id="@+id/modifyList"
-                android:background="@android:drawable/ic_menu_edit"
+                android:background="@drawable/lapiz"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

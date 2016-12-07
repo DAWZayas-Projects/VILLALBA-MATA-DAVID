@@ -14,7 +14,7 @@ using ListManager.Controller;
 using Android.Preferences;
 using ListManager.Models;
 using ListManager.Adapters;
-
+using System.Globalization;
 
 namespace ListManager.Controller
 {
@@ -42,8 +42,8 @@ namespace ListManager.Controller
             action = FindViewById<LinearLayout>(Resource.Id.linearLayoutAction);
 
 
-            btnSave.Click += btnSave_Click;
-            btnBack.Click += btnBack_Click;
+            btnSave.Click += BtnSave_Click;
+            btnBack.Click += BtnBack_Click;
 
             btnEmptyList.Visibility = ViewStates.Invisible;
             action.Visibility = ViewStates.Gone;
@@ -56,16 +56,16 @@ namespace ListManager.Controller
             base.OnResume();                     
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
             Finish();        
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             //vars               
             String conversion;
-            String element = addElement.Text.ToLower();
+            String element = addElement.Text;
             ArrayList lists = new ArrayList();
 
             //Accedo a las listas
@@ -95,6 +95,8 @@ namespace ListManager.Controller
             Preferences.setString(this, Preferences.getLists(), conversion);
             addElement.Text = "";
         }
+
+      
 
         public String ConversionToString(ArrayList arrayList)
         {

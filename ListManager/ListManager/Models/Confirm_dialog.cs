@@ -33,6 +33,7 @@ namespace ListManager.Model
             //Seteo los botones
             builder.SetPositiveButton("Si", (EventHandler<DialogClickEventArgs>)null);
             builder.SetNegativeButton("No", (EventHandler<DialogClickEventArgs>)null);
+
             var dialog = builder.Create();
 
             // Muestro el modal box
@@ -52,7 +53,8 @@ namespace ListManager.Model
             {
                 result = true;
                 dialog.Dismiss();
-            };
+            };          
+
         }
 
     }

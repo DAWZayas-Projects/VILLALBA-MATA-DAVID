@@ -16,6 +16,7 @@ namespace ListManager.Models
     {
         public string NameItem { get; set; }
         public string Quantity { get; set; }
+        public string img { get; set; }
 
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -14,6 +13,8 @@ using ListManager.Models;
 using ListManager.Adapters;
 using ListManager.Controller;
 using ListManager.Model;
+using System.Globalization;
+using System.Collections.Generic;
 
 namespace ListManager.Controller
 {
@@ -45,9 +46,9 @@ namespace ListManager.Controller
             btnBack = FindViewById<Button>(Resource.Id.back);
             action = FindViewById<TextView>(Resource.Id.actionManager);
 
-            btnSave.Click += btnSave_Click;
-            btnEmptyList.Click += btnEmptyList_Click;
-            btnBack.Click += btnBack_Click;
+            btnSave.Click += BtnSave_Click;
+            btnEmptyList.Click += BtnEmptyList_Click;
+            btnBack.Click += BtnBack_Click;
         
         }
 
@@ -69,10 +70,10 @@ namespace ListManager.Controller
                 addElement.Hint = "Add element";
             }
 
-            viewList();       
+            ViewList();       
         }
 
-        public void viewList()
+        public void ViewList()
         {
             String itemsList = Preferences.getString(this, newKey);         
             ArrayList lists = new ArrayList();
@@ -90,20 +91,20 @@ namespace ListManager.Controller
             
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+           private void BtnBack_Click(object sender, EventArgs e)
         {
             Intent init = new Intent(this, typeof(Init));
             StartActivity(init);
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             //vars 
             
             String conversion;
             String itemsList = Preferences.getString(this, newKey);       
           
-            String element = addElement.Text.ToLower();
+            String element = addElement.Text;
            
 
             //Buscando Key de la lista
@@ -151,7 +152,7 @@ namespace ListManager.Controller
         {
             Boolean bl;
             String listNames = Preferences.getString(this, Preferences.getLists());
-            String element = addElement.Text.ToLower();
+            String element = addElement.Text;
             bl = listNames.Contains(element);
             return bl;
 
@@ -171,7 +172,7 @@ namespace ListManager.Controller
             return listNames;
         }
    
-        private void btnEmptyList_Click(object sender, EventArgs e)
+        private void BtnEmptyList_Click(object sender, EventArgs e)
         {      
             customDialog = new CustomDialog(this);
             customDialog.yesBtn.Click += delegate

@@ -13,11 +13,16 @@ using System.Collections;
 using ListManager.Models;
 using ListManager.Adapters;
 using ListManager.Model;
-
+using System.Globalization;
+using Java.IO;
+using Android.Graphics;
+using Android.Provider;
+using Android.Content.PM;
 
 namespace ListManager.Controller
 {
     [Activity(Label = "List Manager")]
+
     public class Init : ListActivity
     {
 
@@ -26,6 +31,7 @@ namespace ListManager.Controller
         Button btnModifyList;
         TextView textInfoItemlist;
         CustomDialog customDialog;
+
     
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -35,27 +41,31 @@ namespace ListManager.Controller
             SetContentView(Resource.Layout.Init);
 
             //Create a pointer with the ID to the corresponding element of the view
-            btnNewList = FindViewById<Button>      (Resource.Id.newList);
-            btnDeleteAllElelements = FindViewById<Button>      (Resource.Id.deleteAllElements);
-            btnModifyList          = FindViewById<Button>      (Resource.Id.modifyList);
-            textInfoItemlist       = FindViewById<TextView>    (Resource.Id.textInfoActions);
+            btnNewList = FindViewById<Button>(Resource.Id.newList);
+            btnDeleteAllElelements = FindViewById<Button>(Resource.Id.deleteAllElements);
+            btnModifyList = FindViewById<Button>(Resource.Id.modifyList);
+            textInfoItemlist = FindViewById<TextView>(Resource.Id.textInfoActions);
 
-            btnNewList.Click             += btnNewList_Click;
-            btnDeleteAllElelements.Click += btnDeleteAllElelements_Click;
-            btnModifyList.Click          += btnModifyList_Click;
-            ListView.ItemLongClick       += delete_Item_ItemLongClick;
+
+            btnNewList.Click             += BtnNewList_Click;
+            btnDeleteAllElelements.Click += BtnDeleteAllElelements_Click;
+            btnModifyList.Click          += BtnModifyList_Click;
+            ListView.ItemLongClick       += Delete_Item_ItemLongClick;
+
         }
-  
 
+       
+        
         protected override void OnResume()
         {
             base.OnResume();
-            viewList();
-            informationActionsItemList();
+            ViewList();
+            InformationActionsItemList();
         }
 
+
         //Get the informative text if there is any element.
-        public void informationActionsItemList()
+        public void InformationActionsItemList()
         {
             String listNames = Preferences.getString(this, Preferences.getLists());
             if(listNames == "")
@@ -67,7 +77,7 @@ namespace ListManager.Controller
             
         }
 
-        public void viewList()
+        public void ViewList()
         {
             // Structure of the string --> name|name|name|name|name ...
             String listNames = Preferences.getString(this, Preferences.getLists());            
@@ -82,7 +92,7 @@ namespace ListManager.Controller
             {
              
                 //Get the number of items from a list.
-                String itemsList = Preferences.getString(this, str);
+                String itemsList = Preferences.getString(this,str);
                 if(itemsList != "")
                 {
                     ArrayList Quantity = new ArrayList();
@@ -93,30 +103,24 @@ namespace ListManager.Controller
                     //Add item to the list.
                     listItems.Add(new Item { NameItem = str, Quantity = "0"});
                 }
-                
-
-                
-                
-                
+                          
 
             }
             //Display the list with the adapter (SimpleListItem1)
             string[] arrayString = listNames != "" ? listItems.Select(x => x.NameItem+" "+"("+x.Quantity+")").ToArray(): listItems.Select(x =>"").ToArray();
-          
-            ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arrayString);
-           
-            
-            
-          
+
+            ListAdapter = new HomeScreenAdapter(this, arrayString);
+
+
         }
-       
-        private void btnNewList_Click(object sender, EventArgs e)
+
+        private void BtnNewList_Click(object sender, EventArgs e)
         {
             Intent newIntent = new Intent(this, typeof(AddElement));
             StartActivity(newIntent);
         }
 
-        private void btnDeleteAllElelements_Click(object sender, EventArgs e)
+        private void BtnDeleteAllElelements_Click(object sender, EventArgs e)
         {
              String listNames = Preferences.getString(this, Preferences.getLists());
              if (listNames != "")
@@ -137,17 +141,20 @@ namespace ListManager.Controller
                      Preferences.setString(this, Preferences.getLists(), "");
                      OnResume();
                  };
+              
              }
 
              
         }
 
-        private void btnModifyList_Click(object sender, EventArgs e)
+
+        private void BtnModifyList_Click(object sender, EventArgs e)
         {
             Intent modifyList = new Intent(this, typeof(ModifyList));
             StartActivity(modifyList);
 
         }
+  
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)
         {
@@ -157,15 +164,15 @@ namespace ListManager.Controller
             //Get the list according to the position of the clicked element.
             String keyList = lists[position].ToString();
             var bundle = new Bundle();
-            Intent viewList = new Intent(this, typeof(ViewList));
+            Intent ViewList = new Intent(this, typeof(ViewItemsList));
             //Send the name of the list that will be the key to visualize.
             bundle.PutString("key", keyList);
-            viewList.PutExtras(bundle);
-            StartActivity(viewList);
+            ViewList.PutExtras(bundle);
+            StartActivity(ViewList);
 
         }
 
-        private void delete_Item_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        private void Delete_Item_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
 
             customDialog = new CustomDialog(this);     
@@ -173,10 +180,9 @@ namespace ListManager.Controller
 
             {
                 string rowDeleteName = (string)this.ListAdapter.GetItem(e.Position);
-                Preferences.setString(this, rowDeleteName, "");
                 String listNames = Preferences.getString(this, Preferences.getLists());
 
-                //Delete quantity to element.
+                //Delete quantity "( number )" to element.
                 ArrayList itemDelete = new ArrayList();
                 itemDelete.AddRange(rowDeleteName.Split(' '));
                 itemDelete.RemoveAt(itemDelete.Count -1);
@@ -188,6 +194,9 @@ namespace ListManager.Controller
 
                 }
                 rowDeleteName = rowDeleteName.TrimStart(' ');
+
+                // Delete all elements of the list selected.
+                Preferences.setString(this, rowDeleteName, "");
 
                 //Remplace the name for "".
                 listNames = listNames.Replace(rowDeleteName, "");
@@ -202,4 +211,5 @@ namespace ListManager.Controller
             
         }        
     }
+  
 }
