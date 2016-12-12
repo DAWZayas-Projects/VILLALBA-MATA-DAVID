@@ -76,6 +76,8 @@ namespace ListManager.Controller
                 allElements = listItems.Count;
                 string[] arrayString = listItems.Select(x => x.NameItem).ToArray();
                 ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemChecked, arrayString);
+
+                
             }
             
         }
@@ -100,9 +102,8 @@ namespace ListManager.Controller
                 count--;
             }
             /******** Fin count check ticked **********/
-
             progress.Text = count + "/" + allElements;
-           
+
         } 
 
         private void BtnModifyList_Click(object sender, EventArgs e)
