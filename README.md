@@ -1,11 +1,16 @@
 # VILLALBA-MATA-DAVID
 
-La principal idea del proyecto es un gestor de listas.
-Principalmente se permitirá crear listas, eliminar ... 
+## List Manager (XAMARIN)
 
-La aplicación se realizara con Xamarin (https://www.xamarin.com/).
+The main idea of the project is a list manager. 
 
+The application will be made with Xamarin. (https://www.xamarin.com/).
 
-Para ver la aplicación: 
-	1. Intalar Xamarin y emular la solución.
-	2. Instalar la aplicación en tu smartphone android, a travesw del archivo .apk
+**Prezi Xamarin** --> https://prezi.com/kpebgwptvfjk/xamarin/?utm_campaign=share&utm_medium=copy
+
+**Document proyect** --> https://drive.google.com/open?id=0B9MeqI0GLryOeS1KNWd6TFFpT3M
+
+**To launch the application.**
+	1. Install Xamarin and emulate the solution.
+	2. Install the application on your android smartphone, through the .apk file
+
